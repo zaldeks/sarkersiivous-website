@@ -205,6 +205,6 @@ const translations = {
   }
 } as const;
 
-type TranslationType = typeof translations.fi & typeof translations.en;
+export type TranslationType = typeof translations.fi & typeof translations.en;
 
 export { translations };
