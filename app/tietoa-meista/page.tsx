@@ -13,29 +13,6 @@ interface Reason {
   description: string;
 }
 
-interface Translation {
-  aboutTitle: string;
-  aboutDesc: string;
-  ourStory: string;
-  ourStoryContent: string;
-  ourStoryExtra: string;
-  ourValues: string;
-  valuesList: Value[];
-  whyChooseUs: string;
-  whyChooseUsList: Reason[];
-  ourTeam: string;
-  ourTeamDesc: string;
-  teamQualities: string[];
-  ourCommitment: string;
-  ourCommitmentDesc: string;
-  commitmentPoints: string[];
-  serviceAreas: string;
-  regions: string;
-  footer: {
-    serviceAreas: string[];
-  };
-}
-
 export default function AboutPage() {
   const { translations } = useLanguage();
 

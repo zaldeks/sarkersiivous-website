@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { EmailJSResponseStatus } from '@emailjs/browser';
 import emailjs from '@emailjs/browser';
 import { emailConfig } from '../../config/emailjs';
 
