@@ -10,7 +10,7 @@ interface Service {
 }
 
 export default function ArvolisatonSiivousPage() {
-  const { language, translations } = useLanguage();
+  const { translations } = useLanguage();
 
   if (!translations) {
     return (
