@@ -8,15 +8,27 @@ import Image from 'next/image';
 export default function BlogPage() {
   const { language, translations } = useLanguage();
 
+  if (!translations) {
+    return (
+      <div className="min-h-screen pt-16 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#27ae60]"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">{translations?.blog || 'Blog'}</h1>
-          <p className="text-gray-600">
-            {translations?.blogDesc || 'Read about our cleaning success stories'}
-          </p>
+          <h1 className="text-4xl font-bold mb-4">{translations.blogTitle}</h1>
+          <p className="text-gray-600 mb-8">{translations.blogDesc}</p>
+          
+          {/* Coming Soon Section */}
+          <div className="bg-white rounded-lg shadow-sm p-8">
+            <h2 className="text-2xl font-bold mb-4">{translations.blogComingSoon}</h2>
+            <p className="text-gray-600">{translations.blogStayTuned}</p>
+          </div>
         </div>
       </section>
 

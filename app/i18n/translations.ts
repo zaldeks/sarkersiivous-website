@@ -29,6 +29,12 @@ const translations = {
       salesEmail: 'myynti@sarkersiivous.fi',
     },
 
+    // Blog Page
+    blogTitle: 'Blogi',
+    blogDesc: 'Lue siivousvinkkejä ja uutisia',
+    blogComingSoon: 'Blogi tulossa pian!',
+    blogStayTuned: 'Pysy kuulolla uusien artikkeleiden varalta.',
+
     // VAT-free Page
     vatFreeTitle: 'ALV 0 % Siivouspalvelut yli 80-vuotiaille',
     vatFreeDesc: 'Tarjoamme ALV 0 %:n siivouspalvelut yli 80-vuotiaille asiakkaille!',
@@ -116,7 +122,7 @@ const translations = {
       blog: 'Blog',
       address: 'Helsinki, Finland',
       email: 'info@sarkersiivous.fi',
-      phone: '044 329 6873',
+      phone: '+358 44 329 6873',
       companyInfo: 'Sarker Cleaning',
       copyright: ' 2024 Sarker Cleaning. All rights reserved.',
       serviceAreas: ['Helsinki', 'Espoo', 'Vantaa', 'Kauniainen'],
@@ -125,8 +131,14 @@ const translations = {
       salesEmail: 'myynti@sarkersiivous.fi',
     },
 
+    // Blog Page
+    blogTitle: 'Blog',
+    blogDesc: 'Read cleaning tips and news',
+    blogComingSoon: 'Blog coming soon!',
+    blogStayTuned: 'Stay tuned for new articles.',
+
     // VAT-free Page
-    vatFreeTitle: 'VAT 0% Cleaning Services for Over 80-year-olds',
+    vatFreeTitle: 'VAT-free Cleaning Services for Over 80s',
     vatFreeDesc: 'We offer VAT-free cleaning services for customers over 80 years old!',
     vatFreeIntro: 'According to Finnish tax legislation, household services such as cleaning are VAT-free (0%) when provided to persons over 80 years old. This allows us to offer professional cleaning services at a more affordable price to elderly people who want to keep their homes clean and comfortable.',
     whatIsVatFree: 'What does VAT 0% mean?',
@@ -193,5 +205,6 @@ const translations = {
   }
 } as const;
 
-export type TranslationType = typeof translations.fi;
+type TranslationType = typeof translations.fi & typeof translations.en;
+
 export { translations };
