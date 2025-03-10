@@ -61,7 +61,7 @@ export interface TranslationType {
   formError: string;
 }
 
-export const fi = {
+const translations: TranslationType = {
   nav: {
     home: 'Etusivu',
     about: 'Tietoa meistä',
@@ -166,111 +166,6 @@ export const fi = {
   formSubmit: 'Lähetä',
   formSuccess: 'Kiitos viestistäsi! Otamme sinuun yhteyttä pian.',
   formError: 'Viestin lähetys epäonnistui. Yritä uudelleen.'
-} satisfies TranslationType;
+};
 
-export const en = {
-  nav: {
-    home: 'Home',
-    about: 'About Us',
-    services: 'Services',
-    taxCredit: 'Tax Credit',
-    vatFree: 'VAT-free Cleaning',
-    blog: 'Blog',
-    contact: 'Contact'
-  },
-  footer: {
-    company: 'Sarker Cleaning',
-    address: 'Helsinki, Finland',
-    phone: '+358 45 861 3571',
-    email: 'info@sarkersiivous.fi',
-    vatNumber: 'Business ID: 3338744-5',
-    serviceAreas: ['Helsinki', 'Espoo', 'Vantaa', 'Kauniainen']
-  },
-  aboutTitle: 'About Us',
-  aboutDesc: 'Quality and reliable cleaning services in Helsinki',
-  ourStory: 'Our Story',
-  ourStoryContent: 'Sarker Cleaning is a cleaning company founded in 2023, offering high-quality cleaning services in the Helsinki area. Our company is built on strong expertise and customer-oriented service.',
-  ourStoryExtra: 'Our goal is to provide the best possible cleaning service at a competitive price.',
-  ourValues: 'Our Values',
-  valuesList: [
-    {
-      title: 'Quality',
-      description: 'We always do our work in the best possible way and ensure customer satisfaction.'
-    },
-    {
-      title: 'Reliability',
-      description: 'We stick to agreed schedules and always act professionally.'
-    },
-    {
-      title: 'Customer Focus',
-      description: 'We listen to our customers\' wishes and tailor our services accordingly.'
-    }
-  ],
-  whyChooseUs: 'Why Choose Us?',
-  whyChooseUsList: [
-    {
-      title: 'Expertise',
-      description: 'Our staff is trained and experienced.'
-    },
-    {
-      title: 'Flexibility',
-      description: 'We adapt to our customers\' schedules and needs.'
-    },
-    {
-      title: 'Competitive Prices',
-      description: 'We offer quality service at a reasonable price.'
-    },
-    {
-      title: 'Environmental Friendly',
-      description: 'We use eco-friendly cleaning products and methods.'
-    }
-  ],
-  ourTeam: 'Our Team',
-  ourTeamDesc: 'Professional and reliable staff',
-  teamQualities: [
-    'Trained professionals',
-    'Reliable employees',
-    'Customer service oriented team',
-    'Continuous training'
-  ],
-  ourCommitment: 'Our Commitment',
-  ourCommitmentDesc: 'We are committed to providing the best possible service',
-  commitmentPoints: [
-    'Quality work',
-    'Punctual schedules',
-    'Flexible solutions',
-    'Customer satisfaction'
-  ],
-  serviceAreas: 'Service Areas',
-  regions: 'Our Regions',
-  vatFreeTitle: 'VAT 0% Cleaning Services for Over 80s',
-  vatFreeDesc: 'VAT-free cleaning services for seniors',
-  vatFreeContent: [
-    'People over 80 can receive cleaning services without VAT.',
-    'The service is based on the Social Welfare Act.',
-    'VAT-free pricing requires a service needs assessment.',
-    'Contact us for more information.'
-  ],
-  vatFreeExtra: 'We are happy to help with applying for VAT-free service.',
-  blogTitle: 'Blog',
-  blogDesc: 'Cleaning tips and news',
-  blogComingSoon: 'Coming soon!',
-  taxCreditTitle: 'Household Tax Credit',
-  taxCreditDesc: 'Utilize household tax credit for cleaning services',
-  taxCreditContent: [
-    'You can get tax credit for cleaning services.',
-    'The deduction is 40% of the work compensation.',
-    'Maximum deduction is €2250 per year.',
-    'Deductible is €100 per year.'
-  ],
-  taxCreditExtra: 'We are happy to help with applying for household tax credit.',
-  contactTitle: 'Contact Us',
-  contactDesc: 'Request a quote or ask for more information',
-  formName: 'Name',
-  formEmail: 'Email',
-  formPhone: 'Phone',
-  formMessage: 'Message',
-  formSubmit: 'Send',
-  formSuccess: 'Thank you for your message! We will contact you soon.',
-  formError: 'Message sending failed. Please try again.'
-} satisfies TranslationType;
+export default translations;

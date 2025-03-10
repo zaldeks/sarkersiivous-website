@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import Image from 'next/image';
 
 const Navigation = () => {
-  const { language, setLanguage, translations } = useLanguage();
+  const { translations } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   if (!translations) {
@@ -51,12 +51,6 @@ const Navigation = () => {
             <Link href="/ota-yhteytta" className="bg-[#27ae60] text-white px-4 py-2 rounded-lg hover:bg-[#219a54] transition-colors">
               {translations.nav.contact}
             </Link>
-            <button
-              onClick={() => setLanguage(language === 'fi' ? 'en' : 'fi')}
-              className="text-[#27ae60] font-medium"
-            >
-              {language.toUpperCase()}
-            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -134,15 +128,6 @@ const Navigation = () => {
             >
               {translations.nav.contact}
             </Link>
-            <button
-              onClick={() => {
-                setLanguage(language === 'fi' ? 'en' : 'fi');
-                setIsMenuOpen(false);
-              }}
-              className="block py-2 text-[#27ae60] font-medium"
-            >
-              {language.toUpperCase()}
-            </button>
           </div>
         )}
       </div>
