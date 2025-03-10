@@ -41,8 +41,18 @@ export interface TranslationType {
   regions: string;
   vatFreeTitle: string;
   vatFreeDesc: string;
-  vatFreeContent: string[];
-  vatFreeExtra: string;
+  vatFreeIntro: string;
+  whatIsVatFree: string;
+  vatFreeExplanation: string;
+  vatFreeBenefitsDesc: string;
+  whoIsItFor: string;
+  whoIsItForDesc: string;
+  whoIsItForAdditional: string;
+  servicesTitle: string;
+  vatFreeServices: Array<{
+    title: string;
+    description: string;
+  }>;
   blogTitle: string;
   blogDesc: string;
   blogComingSoon: string;
@@ -138,13 +148,32 @@ const translations: TranslationType = {
   regions: 'Toiminta-alueemme',
   vatFreeTitle: 'ALV 0 % Siivouspalvelut yli 80-vuotiaille',
   vatFreeDesc: 'Arvolisäverottomat siivouspalvelut ikäihmisille',
-  vatFreeContent: [
-    'Yli 80-vuotiaat voivat saada siivouspalvelut ilman arvonlisäveroa.',
-    'Palvelu perustuu sosiaalihuoltolakiin.',
-    'Arvonlisäveroton hinta edellyttää palvelutarpeen arviointia.',
-    'Ota yhteyttä lisätietoja varten.'
+  vatFreeIntro: 'Tarjoamme arvolisäverottomia siivouspalveluita yli 80-vuotiaille asiakkaillemme. Tämä mahdollisuus perustuu sosiaalihuoltolakiin ja tekee palveluistamme edullisempia ikäihmisille.',
+  whatIsVatFree: 'Mitä on ALV 0 % siivous?',
+  vatFreeExplanation: 'ALV 0 % siivous tarkoittaa, että palvelun hinnasta ei peritä arvonlisäveroa. Tämä tekee palvelusta edullisempaa asiakkaalle.',
+  vatFreeBenefitsDesc: 'Säästät 24 % palvelun hinnasta, kun palvelu on arvolisäveroton.',
+  whoIsItFor: 'Kenelle palvelu on tarkoitettu?',
+  whoIsItForDesc: 'Palvelu on tarkoitettu yli 80-vuotiaille henkilöille, jotka tarvitsevat apua kodin siivouksessa.',
+  whoIsItForAdditional: 'Palvelun saaminen edellyttää palvelutarpeen arviointia.',
+  servicesTitle: 'Tarjoamamme palvelut',
+  vatFreeServices: [
+    {
+      title: 'Ylläpitosiivous',
+      description: 'Säännöllinen kodin siivous ja puhtaanapito'
+    },
+    {
+      title: 'Perussiivous',
+      description: 'Perusteellinen siivous koko asuntoon'
+    },
+    {
+      title: 'Ikkunanpesu',
+      description: 'Ikkunoiden ja lasipintojen puhdistus'
+    },
+    {
+      title: 'Erikoissiivous',
+      description: 'Räätälöidyt siivouspalvelut erityistarpeisiin'
+    }
   ],
-  vatFreeExtra: 'Autamme mielellämme arvonlisäverottoman palvelun hakemisessa.',
   blogTitle: 'Blogi',
   blogDesc: 'Siivousvinkkejä ja uutisia',
   blogComingSoon: 'Tulossa pian!',
