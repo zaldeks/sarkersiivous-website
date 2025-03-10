@@ -1,323 +1,232 @@
 'use client';
 
 import { useLanguage } from '../context/LanguageContext';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 
-export default function Contact() {
+export default function ContactPage() {
   const { translations } = useLanguage();
-  const [mounted, setMounted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [quoteForm, setQuoteForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    details: '',
-    service: 'basic',
-    size: '20-50'
-  });
 
-  // Handle client-side mounting
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Calculate time based on service and size
-  const calculateTime = (size: string) => {
-    const [minSize, maxSize] = size.split('-').map(s => parseInt(s) || parseInt(size));
-    const avgSize = maxSize || minSize;
-
-    switch (quoteForm.service) {
-      case 'basic':
-        return Math.ceil((avgSize / 50) * 2); // 2 hours per 50m²
-      case 'move':
-        return Math.ceil((avgSize / 30) * 3); // 3 hours per 30m²
-      case 'window':
-        return Math.ceil((avgSize / 60) * 1); // 1 hour per 60m²
-      default:
-        return 2;
-    }
-  };
-
-  // Calculate prices based on time
-  const calculatePrices = () => {
-    const hours = calculateTime(quoteForm.size);
-    const hourlyRate = 46; // €46 per hour including VAT
-    const priceWithVAT = hours * hourlyRate;
-    const priceWithoutVAT = priceWithVAT / 1.255; // VAT is 25.5%
-    const priceAfterDeduction = priceWithVAT * 0.65; // 35% tax deduction
-
-    return {
-      hours,
-      withVAT: Math.round(priceWithVAT),
-      withoutVAT: Math.round(priceWithoutVAT),
-      afterDeduction: Math.round(priceAfterDeduction)
-    };
-  };
-
-  const handleQuoteSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-    setErrorMessage('');
 
-    const prices = calculatePrices();
-    const serviceTranslation = quoteForm.service === 'basic' 
-      ? translations.priceCalculator.basicCleaning
-      : quoteForm.service === 'move'
-      ? translations.priceCalculator.moveCleaning
-      : translations.priceCalculator.windowCleaning;
-    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      message: formData.get('message'),
+      selectedServices: Array.from(formData.getAll('services')),
+      squareMeters: formData.get('squareMeters'),
+    };
+
     try {
-      const response = await fetch('/api/send', {
+      const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: quoteForm.name,
-          email: quoteForm.email,
-          phone: quoteForm.phone,
-          service: serviceTranslation,
-          size: quoteForm.size + ' m²',
-          details: quoteForm.details,
-          estimatedHours: `${prices.hours} ${translations.priceCalculator.hours}`,
-          priceWithVAT: `${prices.withVAT} €`,
-          priceWithoutVAT: `${prices.withoutVAT} €`,
-          priceAfterDeduction: `${prices.afterDeduction} €`
-        }),
+        body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || translations.formErrorGeneric);
-      }
-
-      const data = await response.json();
-      if (!data.success) {
-        throw new Error(data.error || translations.formErrorGeneric);
+        throw new Error('Failed to send email');
       }
 
       setSubmitStatus('success');
-      setQuoteForm({
-        name: '',
-        email: '',
-        phone: '',
-        details: '',
-        service: 'basic',
-        size: '20-50'
-      });
+      e.currentTarget.reset();
     } catch (error) {
-      console.error('Failed to send email:', error);
+      console.error('Error sending email:', error);
       setSubmitStatus('error');
-      setErrorMessage((error as Error).message || translations.formErrorGeneric);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setQuoteForm(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  // Wait for client-side hydration and translations
-  if (!mounted || !translations) {
-    return null;
+  if (!translations) {
+    return (
+      <div className="min-h-screen pt-16 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#27ae60]"></div>
+      </div>
+    );
   }
 
   return (
-    <>
-      {/* Hero Section */}
-      <div className="relative h-[400px] w-full">
-        <Image
-          src="/images/services/ota-yhteytta.jpg"
-          alt="Contact Us"
-          width={1920}
-          height={400}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl text-white font-bold">
-            {translations.contactUs}
-          </h1>
-        </div>
-      </div>
-
-      {/* Contact Form Section */}
-      <section className="py-16">
+    <main className="min-h-screen pt-16">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4">
-          <form onSubmit={handleQuoteSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Name */}
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                  {translations.formName} <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={quoteForm.name}
-                  onChange={handleInputChange}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#27ae60] focus:ring-[#27ae60]"
-                  placeholder={translations.formName}
-                />
-              </div>
+          <h1 className="text-4xl font-bold mb-4 text-center">{translations.contactTitle}</h1>
+          <p className="text-xl text-gray-600 text-center mb-12">{translations.contactDesc}</p>
 
-              {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  {translations.formEmail} <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={quoteForm.email}
-                  onChange={handleInputChange}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#27ae60] focus:ring-[#27ae60]"
-                  placeholder={translations.formEmail}
-                />
-              </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-lg shadow-sm p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    {translations.nameLabel}
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#27ae60] focus:border-[#27ae60]"
+                  />
+                </div>
 
-              {/* Phone */}
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                  {translations.formPhone}
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={quoteForm.phone}
-                  onChange={handleInputChange}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#27ae60] focus:ring-[#27ae60]"
-                  placeholder={translations.formPhone}
-                />
-              </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    {translations.emailLabel}
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#27ae60] focus:border-[#27ae60]"
+                  />
+                </div>
 
-              {/* Service Type */}
-              <div>
-                <label htmlFor="service" className="block text-sm font-medium text-gray-700">
-                  {translations.formService} <span className="text-red-500">*</span>
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  required
-                  value={quoteForm.service}
-                  onChange={handleInputChange}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#27ae60] focus:ring-[#27ae60]"
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    {translations.phoneLabel}
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#27ae60] focus:border-[#27ae60]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    {translations.servicesLabel}
+                  </label>
+                  <div className="space-y-2">
+                    {Object.values(translations.priceCalculator).slice(0, 3).map((service, index) => (
+                      <div key={index} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id={`service-${index}`}
+                          name="services"
+                          value={service}
+                          className="h-4 w-4 text-[#27ae60] focus:ring-[#27ae60] border-gray-300 rounded"
+                        />
+                        <label htmlFor={`service-${index}`} className="ml-2 text-sm text-gray-700">
+                          {service}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="squareMeters" className="block text-sm font-medium text-gray-700 mb-1">
+                    {translations.squareMetersLabel}
+                  </label>
+                  <select
+                    id="squareMeters"
+                    name="squareMeters"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#27ae60] focus:border-[#27ae60]"
+                  >
+                    {Object.entries(translations.priceCalculator.sizeRanges).map(([value, label]) => (
+                      <option key={value} value={value}>{label}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                    {translations.messageLabel}
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-[#27ae60] focus:border-[#27ae60]"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full py-3 px-4 border border-transparent rounded-lg text-white font-medium ${
+                    isSubmitting ? 'bg-gray-400' : 'bg-[#27ae60] hover:bg-[#219a54]'
+                  } transition-colors`}
                 >
-                  <option value="basic">{translations.priceCalculator.basicCleaning}</option>
-                  <option value="move">{translations.priceCalculator.moveCleaning}</option>
-                  <option value="window">{translations.priceCalculator.windowCleaning}</option>
-                </select>
-              </div>
+                  {isSubmitting ? translations.sending : translations.sendMessage}
+                </button>
 
-              {/* Size */}
-              <div>
-                <label htmlFor="size" className="block text-sm font-medium text-gray-700">
-                  {translations.formSize} <span className="text-red-500">*</span>
-                </label>
-                <select
-                  id="size"
-                  name="size"
-                  required
-                  value={quoteForm.size}
-                  onChange={handleInputChange}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#27ae60] focus:ring-[#27ae60]"
-                >
-                  <option value="20-50">20-50 m²</option>
-                  <option value="50-75">50-75 m²</option>
-                  <option value="75-100">75-100 m²</option>
-                  <option value="100-150">100-150 m²</option>
-                  <option value="150-200">150-200 m²</option>
-                  <option value="200-250">200-250 m²</option>
-                  <option value="250">250+ m²</option>
-                </select>
-              </div>
+                {submitStatus === 'success' && (
+                  <div className="mt-4 p-4 bg-green-50 text-green-800 rounded-lg">
+                    {translations.emailSentSuccess}
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="mt-4 p-4 bg-red-50 text-red-800 rounded-lg">
+                    {translations.emailSentError}
+                  </div>
+                )}
+              </form>
             </div>
 
-            {/* Additional Details */}
-            <div>
-              <label htmlFor="details" className="block text-sm font-medium text-gray-700">
-                {translations.formDetails}
-              </label>
-              <textarea
-                id="details"
-                name="details"
-                rows={4}
-                value={quoteForm.details}
-                onChange={handleInputChange}
-                className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#27ae60] focus:ring-[#27ae60]"
-                placeholder={translations.formDetails}
-              />
-            </div>
+            <div className="bg-white rounded-lg shadow-sm p-8">
+              <h2 className="text-2xl font-semibold mb-6">{translations.contactInfo}</h2>
+              
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-semibold mb-2">{translations.address}</h3>
+                  <p className="text-gray-600">Helsinki, Finland</p>
+                </div>
 
-            {/* Price Estimate */}
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
-              <h3 className="font-medium text-gray-900">{translations.priceCalculator.priceEstimator}</h3>
-              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-600">{translations.priceCalculator.estimatedTime}</p>
-                  <p className="text-lg font-medium text-gray-900">
-                    {calculatePrices().hours} {translations.priceCalculator.hours}
-                  </p>
+                  <h3 className="font-semibold mb-2">{translations.email}</h3>
+                  <a href="mailto:myynti@sarkersiivous.fi" className="text-[#27ae60] hover:underline">
+                    myynti@sarkersiivous.fi
+                  </a>
                 </div>
+
                 <div>
-                  <p className="text-sm text-gray-600">{translations.priceCalculator.priceWithVAT}</p>
-                  <p className="text-lg font-medium text-gray-900">
-                    {calculatePrices().withVAT} €
-                  </p>
+                  <h3 className="font-semibold mb-2">{translations.phone}</h3>
+                  <a href="tel:+358443296873" className="text-[#27ae60] hover:underline">
+                    +358 44 329 6873
+                  </a>
                 </div>
+
                 <div>
-                  <p className="text-sm text-gray-600">{translations.priceCalculator.priceWithoutVAT}</p>
-                  <p className="text-lg font-medium text-gray-900">
-                    {calculatePrices().withoutVAT} €
-                  </p>
+                  <h3 className="font-semibold mb-2">{translations.businessHours}</h3>
+                  <p className="text-gray-600">{translations.businessHoursValue}</p>
                 </div>
+
                 <div>
-                  <p className="text-sm text-gray-600">{translations.priceCalculator.priceAfterDeduction}</p>
-                  <p className="text-lg font-medium text-[#27ae60]">
-                    {calculatePrices().afterDeduction} €
-                  </p>
+                  <h3 className="font-semibold mb-2">{translations.serviceAreas}</h3>
+                  <ul className="list-disc list-inside text-gray-600">
+                    {translations.footer.serviceAreas.map((area, index) => (
+                      <li key={index}>{area}</li>
+                    ))}
+                  </ul>
                 </div>
+
+                <Image
+                  src="/images/contact.jpg"
+                  alt="Contact Us"
+                  width={400}
+                  height={300}
+                  className="rounded-lg mt-8"
+                />
               </div>
             </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-[#27ae60] text-white py-3 px-6 rounded-lg hover:bg-[#219a54] transition-colors font-semibold disabled:opacity-50"
-            >
-              {isSubmitting ? '...' : translations.formSubmit}
-            </button>
-
-            {/* Status Messages */}
-            {submitStatus === 'success' && (
-              <div className="mt-4 p-4 bg-green-50 text-green-700 rounded-lg">
-                {translations.formSuccess}
-              </div>
-            )}
-            {submitStatus === 'error' && (
-              <div className="mt-4 p-4 bg-red-50 text-red-700 rounded-lg">
-                {errorMessage || translations.formErrorGeneric}
-              </div>
-            )}
-          </form>
+          </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

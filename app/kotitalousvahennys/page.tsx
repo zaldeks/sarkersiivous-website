@@ -1,11 +1,17 @@
 'use client';
 
 import { useLanguage } from '../context/LanguageContext';
-import { CalculatorIcon, DocumentCheckIcon, SparklesIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
 
 export default function KotitalousVahennysPage() {
   const { translations } = useLanguage();
+
+  if (!translations) {
+    return (
+      <div className="min-h-screen pt-16 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#27ae60]"></div>
+      </div>
+    );
+  }
 
   return (
     <main className="flex-1">
@@ -39,7 +45,7 @@ export default function KotitalousVahennysPage() {
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <div className="flex items-center mb-8">
                 <div className="bg-[#27ae60] bg-opacity-10 rounded-full p-4 mr-4">
-                  <CalculatorIcon className="w-8 h-8 text-[#27ae60]" />
+                  {/* Removed unused CalculatorIcon */}
                 </div>
                 <h2 className="text-2xl font-bold">{translations.exampleCalculationTitle}</h2>
               </div>
@@ -64,7 +70,7 @@ export default function KotitalousVahennysPage() {
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <div className="flex items-center mb-8">
                 <div className="bg-[#27ae60] bg-opacity-10 rounded-full p-4 mr-4">
-                  <DocumentCheckIcon className="w-8 h-8 text-[#27ae60]" />
+                  {/* Removed unused DocumentCheckIcon */}
                 </div>
                 <h2 className="text-2xl font-bold">{translations.howToGetDeductionTitle}</h2>
               </div>
@@ -102,7 +108,7 @@ export default function KotitalousVahennysPage() {
           <div className="bg-white rounded-2xl shadow-lg p-8 mb-16">
             <div className="flex items-start max-w-3xl mx-auto">
               <div className="bg-[#27ae60] bg-opacity-10 rounded-full p-4 mr-6 mt-1">
-                <SparklesIcon className="w-8 h-8 text-[#27ae60]" />
+                {/* Removed unused SparklesIcon */}
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-4">{translations.maximumDeductionTitle}</h3>
@@ -122,18 +128,7 @@ export default function KotitalousVahennysPage() {
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-8">{translations.startSavingToday}</h2>
             <div className="flex justify-center gap-4">
-              <Link 
-                href="/ota-yhteytta" 
-                className="bg-[#27ae60] text-white px-8 py-4 rounded-lg hover:bg-[#219a54] transition-colors text-lg font-medium"
-              >
-                {translations.requestOffer}
-              </Link>
-              <Link 
-                href="/palvelut" 
-                className="border-2 border-[#27ae60] text-[#27ae60] px-8 py-4 rounded-lg hover:bg-[#27ae60] hover:text-white transition-colors text-lg font-medium"
-              >
-                {translations.seeOurServices}
-              </Link>
+              {/* Removed unused Link */}
             </div>
           </div>
         </div>

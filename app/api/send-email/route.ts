@@ -1,30 +1,43 @@
-import { init, send } from '@emailjs/browser';
 import { NextRequest, NextResponse } from 'next/server';
-
-init(process.env.EMAILJS_PUBLIC_KEY || '');
+import { EmailJSResponseStatus } from '@emailjs/browser';
+import emailjs from '@emailjs/browser';
+import { emailConfig } from '../../config/emailjs';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { name, email, phone, message, selectedServices, squareMeters } = body;
 
-    await send(
-      process.env.EMAILJS_SERVICE_ID || '',
-      process.env.EMAILJS_TEMPLATE_ID || '',
+    // Format the selected services into a bullet list
+    const formattedServices = selectedServices?.length
+      ? `\n• ${selectedServices.join('\n• ')}`
+      : 'No services selected';
+
+    // Format the square meters if provided
+    const formattedSquareMeters = squareMeters
+      ? `\nSquare Meters: ${squareMeters}`
+      : '';
+
+    // Initialize EmailJS with your public key
+    emailjs.init(emailConfig.publicKey);
+
+    // Send email using EmailJS
+    await emailjs.send(
+      emailConfig.serviceId,
+      emailConfig.templateId,
       {
         from_name: name,
         from_email: email,
-        phone_number: phone,
-        message: message,
-        selected_services: selectedServices?.join(', ') || '',
-        square_meters: squareMeters || '',
-      },
-      process.env.EMAILJS_PUBLIC_KEY || ''
+        phone,
+        message,
+        services: formattedServices,
+        square_meters: formattedSquareMeters,
+      }
     );
 
     return NextResponse.json({ message: 'Email sent successfully' });
-  } catch (error) {
-    console.error('Failed to send email:', error);
+  } catch (err) {
+    console.error('Failed to send email:', err);
     return NextResponse.json(
       { error: 'Failed to send email' },
       { status: 500 }

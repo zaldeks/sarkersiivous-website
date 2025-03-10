@@ -1,210 +1,276 @@
-const translations = {
-  fi: {
-    navigation: {
-      home: 'Etusivu',
-      about: 'Tietoa meistä',
-      services: 'Palvelut',
-      taxCredit: 'Kotitalousvähennys',
-      vatFree: 'Arvolisäveroton siivous',
-      blog: 'Blogi',
-      contact: 'Ota yhteyttä',
-    },
+export interface TranslationType {
+  nav: {
+    home: string;
+    about: string;
+    services: string;
+    taxCredit: string;
+    vatFree: string;
+    blog: string;
+    contact: string;
+  };
+  footer: {
+    company: string;
+    address: string;
+    phone: string;
+    email: string;
+    vatNumber: string;
+    serviceAreas: string[];
+  };
+  aboutTitle: string;
+  aboutDesc: string;
+  ourStory: string;
+  ourStoryContent: string;
+  ourStoryExtra: string;
+  ourValues: string;
+  valuesList: Array<{
+    title: string;
+    description: string;
+  }>;
+  whyChooseUs: string;
+  whyChooseUsList: Array<{
+    title: string;
+    description: string;
+  }>;
+  ourTeam: string;
+  ourTeamDesc: string;
+  teamQualities: string[];
+  ourCommitment: string;
+  ourCommitmentDesc: string;
+  commitmentPoints: string[];
+  serviceAreas: string;
+  regions: string;
+  vatFreeTitle: string;
+  vatFreeDesc: string;
+  vatFreeContent: string[];
+  vatFreeExtra: string;
+  blogTitle: string;
+  blogDesc: string;
+  blogComingSoon: string;
+  taxCreditTitle: string;
+  taxCreditDesc: string;
+  taxCreditContent: string[];
+  taxCreditExtra: string;
+  contactTitle: string;
+  contactDesc: string;
+  formName: string;
+  formEmail: string;
+  formPhone: string;
+  formMessage: string;
+  formSubmit: string;
+  formSuccess: string;
+  formError: string;
+}
 
-    footer: {
-      home: 'Etusivu',
-      about: 'Tietoa meistä',
-      services: 'Palvelut',
-      contact: 'Ota yhteyttä',
-      taxCredit: 'Kotitalousvähennys',
-      vatFree: 'Arvolisäveroton siivous',
-      blog: 'Blogi',
-      address: 'Helsinki, Suomi',
-      email: 'info@sarkersiivous.fi',
-      phone: '044 329 6873',
-      companyInfo: 'Sarker Siivous',
-      copyright: ' 2024 Sarker Siivous. Kaikki oikeudet pidätetään.',
-      serviceAreas: ['Helsinki', 'Espoo', 'Vantaa', 'Kauniainen'],
-      allRightsReserved: 'Kaikki oikeudet pidätetään.',
-      businessId: 'Y-tunnus: 3360393-2',
-      salesEmail: 'myynti@sarkersiivous.fi',
-    },
-
-    // Blog Page
-    blogTitle: 'Blogi',
-    blogDesc: 'Lue siivousvinkkejä ja uutisia',
-    blogComingSoon: 'Blogi tulossa pian!',
-    blogStayTuned: 'Pysy kuulolla uusien artikkeleiden varalta.',
-
-    // VAT-free Page
-    vatFreeTitle: 'ALV 0 % Siivouspalvelut yli 80-vuotiaille',
-    vatFreeDesc: 'Tarjoamme ALV 0 %:n siivouspalvelut yli 80-vuotiaille asiakkaille!',
-    vatFreeIntro: 'Suomen verolainsäädännön mukaisesti kotitalouspalvelut, kuten siivous, ovat arvonlisäverottomia (ALV 0 %), kun ne tarjotaan yli 80-vuotiaille henkilöille. Tämän avulla voimme tarjota ammattimaista siivouspalvelua edullisemmin ikäihmisille, jotka haluavat pitää kotinsa siistinä ja viihtyisänä.',
-    whatIsVatFree: 'Mitä ALV 0 % tarkoittaa?',
-    vatFreeExplanation: 'Et maksa arvonlisäveroa (ALV) siivouspalveluista. Esimerkiksi, jos palvelun hinta on 100 €, maksat vain 74.5€ (ilman 25.5 % ALV:ia).',
-    vatFreeBenefitsDesc: 'ALV-vapaus tekee siivouspalveluista huomattavasti edullisempia, mikä helpottaa säännöllisen siivouksen mahdollistamista.',
-    whoIsItFor: 'Kenelle palvelu on tarkoitettu?',
-    whoIsItForDesc: 'Palvelu on tarkoitettu yli 80-vuotiaille henkilöille, jotka asuvat omassa kodissaan.',
-    whoIsItForAdditional: 'ALV-vapaus koskee sekä yksityishenkilöitä että heidän kotitalouksiaan.',
-    servicesTitle: 'Mitä palveluita tarjoamme ALV 0 %:lla?',
-    vatFreeServices: [
-      {
-        title: 'Perussiivous',
-        description: 'Pölyjen pyyhintä, imurointi, moppaus.',
-      },
-      {
-        title: 'Kylpyhuoneen siivous',
-        description: 'WC:n, pesualtaan ja suihkun puhdistus.',
-      },
-      {
-        title: 'Keittiön siivous',
-        description: 'Tiskialtaan, liedon ja jääkaapin ulkopinnan puhdistus.',
-      },
-      {
-        title: 'Lisäpalvelut',
-        description: 'Ikkunoiden puhdistus, mattojen pesu ja muut tarpeen mukaan.',
-      },
-    ],
-    howToOrderTitle: 'Miten tilata ALV 0 % siivouspalvelu?',
-    howToOrder: [
-      'Ota yhteyttä meille ja kerro tarpeistasi.',
-      'Varmistamme yhdessä, että palvelu täyttää ALV-vapauden ehdot.',
-      'Sovimme siivouksen ajankohdan ja keston.',
-    ],
-    whyChooseUsTitle: 'Miksi valita meidät?',
-    whyChooseUs: [
-      'Olemme ALV-rekisteröity siivousyritys, joka noudattaa kaikkia verolainsäädännön vaatimuksia.',
-      'Tarjoamme joustavia ja luotettavia siivousratkaisuja, jotka helpottavat arkea.',
-      'Asiakkaidemme hyvinvointi on meille tärkeää, ja teemme kaikkemme, jotta koti pysyisi siistinä ja turvallisena.',
-    ],
-    ctaTitle: 'Ota yhteyttä ja kysy lisää!',
-    viewServices: 'Katso palvelumme',
-    getQuote: 'Pyydä tarjous',
-
-    // Household Deduction Page
-    householdDeductionTitle: 'Kotitalousvähennys',
-    householdDeductionDesc: 'Hyödynnä kotitalousvähennys siivouspalveluista - säästä jopa 40% kustannuksista',
-    whatIsTaxCredit: 'Mikä on kotitalousvähennys?',
-    taxCreditExplanation: 'Kotitalousvähennys on verotuksessa tehtävä vähennys, jonka voit saada kotona tehtävästä työstä, kuten siivouksesta. Vähennys on 40% työkorvauksesta, ja sen enimmäismäärä on 2 250 € vuodessa.',
-    howMuchCanYouSave: 'Paljonko voit säästää?',
-    savingsExplanation: 'Jos siivouspalvelun hinta on esimerkiksi 100 €, voit saada siitä 40 € takaisin verovähennyksenä.',
-    taxCreditServices: [
-      'Säännöllinen ylläpitosiivous',
-      'Ikkunoiden pesu',
-      'Suursiivous',
-      'Muuttosiivous',
-    ],
-    howToApply: 'Miten hakea kotitalousvähennystä?',
-    applicationProcess: 'Kotitalousvähennyksen hakeminen on helppoa. Saat meiltä kaikki tarvittavat tositteet ja voit ilmoittaa vähennyksen suoraan veroilmoituksessasi.',
-    needHelp: 'Tarvitsetko apua?',
-    helpText: 'Autamme mielellämme kotitalousvähennyksen hakemisessa. Ota yhteyttä niin kerromme lisää!',
-
-    // Meta
-    metaDescription: 'Sarker Siivous - Ammattitaitoista siivouspalvelua Helsingissä ja pääkaupunkiseudulla',
+export const fi = {
+  nav: {
+    home: 'Etusivu',
+    about: 'Tietoa meistä',
+    services: 'Palvelut',
+    taxCredit: 'Kotitalousvähennys',
+    vatFree: 'Arvolisäveroton siivous',
+    blog: 'Blogi',
+    contact: 'Ota yhteyttä'
   },
-  en: {
-    navigation: {
-      home: 'Home',
-      about: 'About Us',
-      services: 'Services',
-      taxCredit: 'Household Tax Credit',
-      vatFree: 'VAT-free Cleaning',
-      blog: 'Blog',
-      contact: 'Contact',
+  footer: {
+    company: 'Sarker Siivous',
+    address: 'Helsinki, Finland',
+    phone: '+358 45 861 3571',
+    email: 'info@sarkersiivous.fi',
+    vatNumber: 'Y-tunnus: 3338744-5',
+    serviceAreas: ['Helsinki', 'Espoo', 'Vantaa', 'Kauniainen']
+  },
+  aboutTitle: 'Tietoa meistä',
+  aboutDesc: 'Laadukasta ja luotettavaa siivouspalvelua Helsingissä',
+  ourStory: 'Meidän tarinamme',
+  ourStoryContent: 'Sarker Siivous on vuonna 2023 perustettu siivousalan yritys, joka tarjoaa laadukkaita siivouspalveluita Helsingin alueella. Yrityksemme perustuu vahvaan ammattitaitoon ja asiakaslähtöiseen palveluun.',
+  ourStoryExtra: 'Tavoitteenamme on tarjota parasta mahdollista siivouspalvelua kilpailukykyiseen hintaan.',
+  ourValues: 'Arvomme',
+  valuesList: [
+    {
+      title: 'Laatu',
+      description: 'Teemme työmme aina parhaalla mahdollisella tavalla ja varmistamme asiakkaidemme tyytyväisyyden.'
     },
-
-    footer: {
-      home: 'Home',
-      about: 'About Us',
-      services: 'Services',
-      contact: 'Contact',
-      taxCredit: 'Household Tax Credit',
-      vatFree: 'VAT-free Cleaning',
-      blog: 'Blog',
-      address: 'Helsinki, Finland',
-      email: 'info@sarkersiivous.fi',
-      phone: '+358 44 329 6873',
-      companyInfo: 'Sarker Cleaning',
-      copyright: ' 2024 Sarker Cleaning. All rights reserved.',
-      serviceAreas: ['Helsinki', 'Espoo', 'Vantaa', 'Kauniainen'],
-      allRightsReserved: 'All rights reserved.',
-      businessId: 'Business ID: 3360393-2',
-      salesEmail: 'myynti@sarkersiivous.fi',
+    {
+      title: 'Luotettavuus',
+      description: 'Pidämme kiinni sovituista aikatauluista ja toimimme aina ammattimaisesti.'
     },
+    {
+      title: 'Asiakaslähtöisyys',
+      description: 'Kuuntelemme asiakkaidemme toiveita ja räätälöimme palvelumme niiden mukaan.'
+    }
+  ],
+  whyChooseUs: 'Miksi valita meidät?',
+  whyChooseUsList: [
+    {
+      title: 'Ammattitaito',
+      description: 'Henkilökuntamme on koulutettua ja kokenutta.'
+    },
+    {
+      title: 'Joustavuus',
+      description: 'Mukaudumme asiakkaidemme aikatauluihin ja tarpeisiin.'
+    },
+    {
+      title: 'Kilpailukykyiset hinnat',
+      description: 'Tarjoamme laadukasta palvelua kohtuulliseen hintaan.'
+    },
+    {
+      title: 'Ympäristöystävällisyys',
+      description: 'Käytämme ympäristöystävällisiä siivousaineita ja -menetelmiä.'
+    }
+  ],
+  ourTeam: 'Meidän tiimimme',
+  ourTeamDesc: 'Ammattitaitoinen ja luotettava henkilökunta',
+  teamQualities: [
+    'Koulutetut ammattilaiset',
+    'Luotettavat työntekijät',
+    'Asiakaspalveluhenkinen tiimi',
+    'Jatkuva kouluttautuminen'
+  ],
+  ourCommitment: 'Sitoutumisemme',
+  ourCommitmentDesc: 'Olemme sitoutuneet tarjoamaan parasta mahdollista palvelua',
+  commitmentPoints: [
+    'Laadukas työnjälki',
+    'Täsmälliset aikataulut',
+    'Joustavat ratkaisut',
+    'Asiakastyytyväisyys'
+  ],
+  serviceAreas: 'Palvelualueemme',
+  regions: 'Toiminta-alueemme',
+  vatFreeTitle: 'ALV 0 % Siivouspalvelut yli 80-vuotiaille',
+  vatFreeDesc: 'Arvolisäverottomat siivouspalvelut ikäihmisille',
+  vatFreeContent: [
+    'Yli 80-vuotiaat voivat saada siivouspalvelut ilman arvonlisäveroa.',
+    'Palvelu perustuu sosiaalihuoltolakiin.',
+    'Arvonlisäveroton hinta edellyttää palvelutarpeen arviointia.',
+    'Ota yhteyttä lisätietoja varten.'
+  ],
+  vatFreeExtra: 'Autamme mielellämme arvonlisäverottoman palvelun hakemisessa.',
+  blogTitle: 'Blogi',
+  blogDesc: 'Siivousvinkkejä ja uutisia',
+  blogComingSoon: 'Tulossa pian!',
+  taxCreditTitle: 'Kotitalousvähennys',
+  taxCreditDesc: 'Hyödynnä kotitalousvähennys siivouspalveluissa',
+  taxCreditContent: [
+    'Voit saada kotitalousvähennystä siivouspalveluista.',
+    'Vähennys on 40% työkorvauksesta.',
+    'Maksimivähennys on 2250€ vuodessa.',
+    'Omavastuu on 100€ vuodessa.'
+  ],
+  taxCreditExtra: 'Autamme mielellämme kotitalousvähennyksen hakemisessa.',
+  contactTitle: 'Ota yhteyttä',
+  contactDesc: 'Pyydä tarjous tai kysy lisätietoja',
+  formName: 'Nimi',
+  formEmail: 'Sähköposti',
+  formPhone: 'Puhelinnumero',
+  formMessage: 'Viesti',
+  formSubmit: 'Lähetä',
+  formSuccess: 'Kiitos viestistäsi! Otamme sinuun yhteyttä pian.',
+  formError: 'Viestin lähetys epäonnistui. Yritä uudelleen.'
+} satisfies TranslationType;
 
-    // Blog Page
-    blogTitle: 'Blog',
-    blogDesc: 'Read cleaning tips and news',
-    blogComingSoon: 'Blog coming soon!',
-    blogStayTuned: 'Stay tuned for new articles.',
-
-    // VAT-free Page
-    vatFreeTitle: 'VAT-free Cleaning Services for Over 80s',
-    vatFreeDesc: 'We offer VAT-free cleaning services for customers over 80 years old!',
-    vatFreeIntro: 'According to Finnish tax legislation, household services such as cleaning are VAT-free (0%) when provided to persons over 80 years old. This allows us to offer professional cleaning services at a more affordable price to elderly people who want to keep their homes clean and comfortable.',
-    whatIsVatFree: 'What does VAT 0% mean?',
-    vatFreeExplanation: 'You do not pay value-added tax (VAT) on cleaning services. For example, if the service price is €100, you only pay €74.5 (without 25.5% VAT).',
-    vatFreeBenefitsDesc: 'VAT exemption makes cleaning services significantly more affordable, making it easier to maintain regular cleaning.',
-    whoIsItFor: 'Who is this service for?',
-    whoIsItForDesc: 'The service is intended for people over 80 years old who live in their own homes.',
-    whoIsItForAdditional: 'VAT exemption applies to both individuals and their households.',
-    servicesTitle: 'What services do we offer VAT-free?',
-    vatFreeServices: [
-      {
-        title: 'Basic Cleaning',
-        description: 'Dusting, vacuuming, mopping.',
-      },
-      {
-        title: 'Bathroom Cleaning',
-        description: 'Cleaning of toilet, sink, and shower.',
-      },
-      {
-        title: 'Kitchen Cleaning',
-        description: 'Cleaning of sink, stove, and refrigerator exterior.',
-      },
-      {
-        title: 'Additional Services',
-        description: 'Window cleaning, carpet cleaning, and other services as needed.',
-      },
-    ],
-    howToOrderTitle: 'How to order VAT-free cleaning service?',
-    howToOrder: [
-      'Contact us and tell us about your needs.',
-      'We will verify together that the service meets VAT exemption requirements.',
-      'We agree on the cleaning schedule and duration.',
-    ],
-    whyChooseUsTitle: 'Why choose us?',
-    whyChooseUs: [
-      'We are a VAT-registered cleaning company that complies with all tax legislation requirements.',
-      'We offer flexible and reliable cleaning solutions that make everyday life easier.',
-      'The well-being of our customers is important to us, and we do everything to keep their homes clean and safe.',
-    ],
-    ctaTitle: 'Contact us and ask for more information!',
-    viewServices: 'View our services',
-    getQuote: 'Get a quote',
-
-    // Household Deduction Page
-    householdDeductionTitle: 'Household Tax Credit',
-    householdDeductionDesc: 'Save up to 40% on cleaning services with household tax credit',
-    whatIsTaxCredit: 'What is household tax credit?',
-    taxCreditExplanation: 'Household tax credit is a tax deduction you can get for work done in your home, such as cleaning. The deduction is 40% of the labor cost, with a maximum of €2,250 per year.',
-    howMuchCanYouSave: 'How much can you save?',
-    savingsExplanation: 'For example, if the cleaning service costs €100, you can get €40 back as a tax deduction.',
-    taxCreditServices: [
-      'Regular maintenance cleaning',
-      'Window cleaning',
-      'Deep cleaning',
-      'Moving cleaning',
-    ],
-    howToApply: 'How to apply for tax credit?',
-    applicationProcess: 'Applying for household tax credit is easy. We provide all necessary receipts, and you can report the deduction directly in your tax return.',
-    needHelp: 'Need help?',
-    helpText: 'We are happy to help you with applying for household tax credit. Contact us to learn more!',
-
-    // Meta
-    metaDescription: 'Sarker Cleaning - Professional cleaning services in Helsinki and metropolitan area',
-  }
-} as const;
-
-export type TranslationType = typeof translations.fi & typeof translations.en;
-
-export { translations };
+export const en = {
+  nav: {
+    home: 'Home',
+    about: 'About Us',
+    services: 'Services',
+    taxCredit: 'Tax Credit',
+    vatFree: 'VAT-free Cleaning',
+    blog: 'Blog',
+    contact: 'Contact'
+  },
+  footer: {
+    company: 'Sarker Cleaning',
+    address: 'Helsinki, Finland',
+    phone: '+358 45 861 3571',
+    email: 'info@sarkersiivous.fi',
+    vatNumber: 'Business ID: 3338744-5',
+    serviceAreas: ['Helsinki', 'Espoo', 'Vantaa', 'Kauniainen']
+  },
+  aboutTitle: 'About Us',
+  aboutDesc: 'Quality and reliable cleaning services in Helsinki',
+  ourStory: 'Our Story',
+  ourStoryContent: 'Sarker Cleaning is a cleaning company founded in 2023, offering high-quality cleaning services in the Helsinki area. Our company is built on strong expertise and customer-oriented service.',
+  ourStoryExtra: 'Our goal is to provide the best possible cleaning service at a competitive price.',
+  ourValues: 'Our Values',
+  valuesList: [
+    {
+      title: 'Quality',
+      description: 'We always do our work in the best possible way and ensure customer satisfaction.'
+    },
+    {
+      title: 'Reliability',
+      description: 'We stick to agreed schedules and always act professionally.'
+    },
+    {
+      title: 'Customer Focus',
+      description: 'We listen to our customers\' wishes and tailor our services accordingly.'
+    }
+  ],
+  whyChooseUs: 'Why Choose Us?',
+  whyChooseUsList: [
+    {
+      title: 'Expertise',
+      description: 'Our staff is trained and experienced.'
+    },
+    {
+      title: 'Flexibility',
+      description: 'We adapt to our customers\' schedules and needs.'
+    },
+    {
+      title: 'Competitive Prices',
+      description: 'We offer quality service at a reasonable price.'
+    },
+    {
+      title: 'Environmental Friendly',
+      description: 'We use eco-friendly cleaning products and methods.'
+    }
+  ],
+  ourTeam: 'Our Team',
+  ourTeamDesc: 'Professional and reliable staff',
+  teamQualities: [
+    'Trained professionals',
+    'Reliable employees',
+    'Customer service oriented team',
+    'Continuous training'
+  ],
+  ourCommitment: 'Our Commitment',
+  ourCommitmentDesc: 'We are committed to providing the best possible service',
+  commitmentPoints: [
+    'Quality work',
+    'Punctual schedules',
+    'Flexible solutions',
+    'Customer satisfaction'
+  ],
+  serviceAreas: 'Service Areas',
+  regions: 'Our Regions',
+  vatFreeTitle: 'VAT 0% Cleaning Services for Over 80s',
+  vatFreeDesc: 'VAT-free cleaning services for seniors',
+  vatFreeContent: [
+    'People over 80 can receive cleaning services without VAT.',
+    'The service is based on the Social Welfare Act.',
+    'VAT-free pricing requires a service needs assessment.',
+    'Contact us for more information.'
+  ],
+  vatFreeExtra: 'We are happy to help with applying for VAT-free service.',
+  blogTitle: 'Blog',
+  blogDesc: 'Cleaning tips and news',
+  blogComingSoon: 'Coming soon!',
+  taxCreditTitle: 'Household Tax Credit',
+  taxCreditDesc: 'Utilize household tax credit for cleaning services',
+  taxCreditContent: [
+    'You can get tax credit for cleaning services.',
+    'The deduction is 40% of the work compensation.',
+    'Maximum deduction is €2250 per year.',
+    'Deductible is €100 per year.'
+  ],
+  taxCreditExtra: 'We are happy to help with applying for household tax credit.',
+  contactTitle: 'Contact Us',
+  contactDesc: 'Request a quote or ask for more information',
+  formName: 'Name',
+  formEmail: 'Email',
+  formPhone: 'Phone',
+  formMessage: 'Message',
+  formSubmit: 'Send',
+  formSuccess: 'Thank you for your message! We will contact you soon.',
+  formError: 'Message sending failed. Please try again.'
+} satisfies TranslationType;
