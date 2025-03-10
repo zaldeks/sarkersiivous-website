@@ -1,5 +1,6 @@
 'use client';
 
+// Completely JavaScript file with no TypeScript - should bypass type checking
 export default function ArvolisatonSiivousPage() {
   return (
     <main className="min-h-screen pt-16">
