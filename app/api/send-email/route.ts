@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
         from_email: email,
         phone_number: phone,
         message: message,
-        selected_services: selectedServices.join(', '),
-        square_meters: squareMeters,
+        selected_services: selectedServices?.join(', ') || '',
+        square_meters: squareMeters || '',
       },
       process.env.EMAILJS_PUBLIC_KEY || ''
     );
