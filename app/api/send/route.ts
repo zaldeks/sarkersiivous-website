@@ -69,7 +69,7 @@ export async function POST(req: Request) {
     const data = await resend.emails.send({
       from: 'Sarker Siivous <onboarding@resend.dev>', // Use this for testing
       to: ['myynti@sarkersiivous.fi'], // Company sales email       
-      reply_to: email, // Allow replying directly to the customer   
+      replyTo: email, // Allow replying directly to the customer   
       subject: `New Cleaning Service Inquiry from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
