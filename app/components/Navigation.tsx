@@ -31,25 +31,25 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <Link href="/" className="text-gray-700 hover:text-[#27ae60]">
-              {translations.navigation.home}
+              {translations.nav.home}
             </Link>
             <Link href="/tietoa-meista" className="text-gray-700 hover:text-[#27ae60]">
-              {translations.navigation.about}
+              {translations.nav.about}
             </Link>
             <Link href="/palvelut" className="text-gray-700 hover:text-[#27ae60]">
-              {translations.navigation.services}
+              {translations.nav.services}
             </Link>
             <Link href="/kotitalousvahennys" className="text-gray-700 hover:text-[#27ae60]">
-              {translations.navigation.taxCredit}
+              {translations.nav.taxCredit}
             </Link>
             <Link href="/arvolisaton-siivous" className="text-gray-700 hover:text-[#27ae60]">
-              {translations.navigation.vatFree}
+              {translations.nav.vatFree}
             </Link>
             <Link href="/blogi" className="text-gray-700 hover:text-[#27ae60]">
-              {translations.navigation.blog}
+              {translations.nav.blog}
             </Link>
             <Link href="/ota-yhteytta" className="bg-[#27ae60] text-white px-4 py-2 rounded-lg hover:bg-[#219a54] transition-colors">
-              {translations.navigation.contact}
+              {translations.nav.contact}
             </Link>
             <button
               onClick={() => setLanguage(language === 'fi' ? 'en' : 'fi')}
@@ -90,49 +90,49 @@ const Navigation = () => {
               className="block py-2 text-gray-700 hover:text-[#27ae60]"
               onClick={() => setIsMenuOpen(false)}
             >
-              {translations.navigation.home}
+              {translations.nav.home}
             </Link>
             <Link
               href="/tietoa-meista"
               className="block py-2 text-gray-700 hover:text-[#27ae60]"
               onClick={() => setIsMenuOpen(false)}
             >
-              {translations.navigation.about}
+              {translations.nav.about}
             </Link>
             <Link
               href="/palvelut"
               className="block py-2 text-gray-700 hover:text-[#27ae60]"
               onClick={() => setIsMenuOpen(false)}
             >
-              {translations.navigation.services}
+              {translations.nav.services}
             </Link>
             <Link
               href="/kotitalousvahennys"
               className="block py-2 text-gray-700 hover:text-[#27ae60]"
               onClick={() => setIsMenuOpen(false)}
             >
-              {translations.navigation.taxCredit}
+              {translations.nav.taxCredit}
             </Link>
             <Link
               href="/arvolisaton-siivous"
               className="block py-2 text-gray-700 hover:text-[#27ae60]"
               onClick={() => setIsMenuOpen(false)}
             >
-              {translations.navigation.vatFree}
+              {translations.nav.vatFree}
             </Link>
             <Link
               href="/blogi"
               className="block py-2 text-gray-700 hover:text-[#27ae60]"
               onClick={() => setIsMenuOpen(false)}
             >
-              {translations.navigation.blog}
+              {translations.nav.blog}
             </Link>
             <Link
               href="/ota-yhteytta"
               className="block py-2 bg-[#27ae60] text-white px-4 rounded-lg hover:bg-[#219a54] my-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              {translations.navigation.contact}
+              {translations.nav.contact}
             </Link>
             <button
               onClick={() => {
