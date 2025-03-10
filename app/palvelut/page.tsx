@@ -2,10 +2,10 @@
 
 import { useLanguage } from '../context/LanguageContext';
 import Link from 'next/link';
-import { CheckIcon, CalendarDaysIcon, HandRaisedIcon, SparklesIcon, CreditCardIcon, MapPinIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
+import { CheckIcon, CalendarDaysIcon, HandRaisedIcon, SparklesIcon, CreditCardIcon, MapPinIcon } from '@heroicons/react/24/solid';
 
-export default function Services() {
+export default function ServicesPage() {
   const { translations } = useLanguage();
 
   if (!translations) {
@@ -40,23 +40,23 @@ export default function Services() {
   ];
 
   return (
-    <>
+    <main className="flex-1">
       {/* Hero Section */}
-      <section className="relative h-[50vh]">
-        {/* Hero Background */}
+      <section className="relative h-[400px]">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/images/services/hero-image.jpg"
             alt="Professional cleaning services"
+            width={1920}
+            height={400}
             className="w-full h-full object-cover"
+            priority
           />
-          <div className="absolute inset-0 bg-black opacity-40"></div>
+          <div className="absolute inset-0 bg-black opacity-50"></div>
         </div>
-
-        {/* Hero Content */}
         <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="text-center text-white px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <div className="text-center text-white">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {translations.ourServices}
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
@@ -66,22 +66,28 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Section */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Residential Cleaning */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="relative h-64">
-                <img
+          {/* Residential Cleaning */}
+          <div className="mb-16">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="relative h-[300px]">
+                <Image
                   src="/images/services/residental cleaning.jpg"
                   alt="Residential cleaning"
-                  className="w-full h-full object-cover"
+                  width={600}
+                  height={300}
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-4">{translations.residentialCleaning}</h3>
-                <p className="text-gray-600 mb-6">{translations.residentialDesc}</p>
+              <div>
+                <h2 className="text-3xl font-bold mb-4">
+                  {translations.residentialCleaning}
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  {translations.residentialDesc}
+                </p>
                 <div className="space-y-3 mb-6">
                   {residentialServices.map((service, index) => (
                     <div key={index} className="flex items-start">
@@ -92,25 +98,24 @@ export default function Services() {
                 </div>
                 <Link
                   href="/ota-yhteytta"
-                  className="inline-block bg-[#27ae60] hover:bg-[#219a54] text-white font-medium py-2 px-6 rounded-full transition-colors"
+                  className="inline-block bg-[#27ae60] text-white px-6 py-3 rounded-lg hover:bg-[#219a52] transition-colors"
                 >
                   {translations.getQuote}
                 </Link>
               </div>
             </div>
+          </div>
 
-            {/* Window Cleaning */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="relative h-64">
-                <img
-                  src="/images/services/window cleaning.jpg"
-                  alt="Window cleaning"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-4">{translations.windowCleaning}</h3>
-                <p className="text-gray-600 mb-6">{translations.windowDesc}</p>
+          {/* Window Cleaning */}
+          <div className="mb-16">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="order-2 md:order-1">
+                <h2 className="text-3xl font-bold mb-4">
+                  {translations.windowCleaning}
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  {translations.windowDesc}
+                </p>
                 <div className="space-y-3 mb-6">
                   {windowServices.map((service, index) => (
                     <div key={index} className="flex items-start">
@@ -121,25 +126,42 @@ export default function Services() {
                 </div>
                 <Link
                   href="/ota-yhteytta"
-                  className="inline-block bg-[#27ae60] hover:bg-[#219a54] text-white font-medium py-2 px-6 rounded-full transition-colors"
+                  className="inline-block bg-[#27ae60] text-white px-6 py-3 rounded-lg hover:bg-[#219a52] transition-colors"
                 >
                   {translations.getQuote}
                 </Link>
               </div>
-            </div>
-
-            {/* Special Cleaning */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="relative h-64">
-                <img
-                  src="/images/services/special cleaning.jpg"
-                  alt="Special cleaning"
-                  className="w-full h-full object-cover"
+              <div className="order-1 md:order-2 relative h-[300px]">
+                <Image
+                  src="/images/services/window cleaning.jpg"
+                  alt="Window cleaning"
+                  width={600}
+                  height={300}
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-4">{translations.specialCleaning}</h3>
-                <p className="text-gray-600 mb-6">{translations.specialDesc}</p>
+            </div>
+          </div>
+
+          {/* Special Cleaning */}
+          <div className="mb-16">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="relative h-[300px]">
+                <Image
+                  src="/images/services/special cleaning.jpg"
+                  alt="Special cleaning"
+                  width={600}
+                  height={300}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold mb-4">
+                  {translations.specialCleaning}
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  {translations.specialDesc}
+                </p>
                 <div className="space-y-3 mb-6">
                   {specialServices.map((service, index) => (
                     <div key={index} className="flex items-start">
@@ -150,7 +172,7 @@ export default function Services() {
                 </div>
                 <Link
                   href="/ota-yhteytta"
-                  className="inline-block bg-[#27ae60] hover:bg-[#219a54] text-white font-medium py-2 px-6 rounded-full transition-colors"
+                  className="inline-block bg-[#27ae60] text-white px-6 py-3 rounded-lg hover:bg-[#219a52] transition-colors"
                 >
                   {translations.getQuote}
                 </Link>
@@ -289,6 +311,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

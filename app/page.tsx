@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useLanguage } from './context/LanguageContext';
 import PriceCalculator from './components/PriceCalculator';
+import Link from 'next/link';
 
 export default function Home() {
   const { translations } = useLanguage();
@@ -14,34 +15,38 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section */}
-      <div className="relative w-full h-[600px]">
-        {/* Background Image */}
+      <section className="relative h-[80vh]">
         <div className="absolute inset-0">
           <Image
             src="/images/hero/hero-bg.jpg"
-            alt="Professional cleaning service"
+            alt="Hero background"
             width={1920}
             height={1080}
             className="w-full h-full object-cover"
             priority
-            quality={100}
           />
+          <div className="absolute inset-0 bg-black opacity-50"></div>
         </div>
 
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/30"></div>
-
-        {/* Content */}
-        <div className="relative h-full flex items-center justify-center">
-          <div className="container mx-auto px-4 text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{translations.welcomeTitle}</h1>
-            <p className="text-xl md:text-2xl mb-8">{translations.welcomeSubtitle}</p>
-            <a href="/ota-yhteytta" className="bg-white text-[#27ae60] px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
-              {translations.getQuote}
-            </a>
+        <div className="relative z-10 h-full flex items-center">
+          <div className="max-w-6xl mx-auto px-4 w-full">
+            <div className="max-w-3xl">
+              <h1 className="text-4xl md:text-6xl text-white font-bold mb-6">
+                {translations.welcomeTitle}
+              </h1>
+              <p className="text-xl text-white opacity-90 mb-8">
+                {translations.welcomeSubtitle}
+              </p>
+              <Link
+                href="/ota-yhteytta"
+                className="inline-block bg-[#27ae60] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#219a52] transition-colors"
+              >
+                {translations.contactUs}
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Puhtaampi koti Section */}
       <section className="w-full bg-white py-16">
@@ -54,70 +59,82 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">{translations.ourServices}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            {translations.ourServices}
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
             {/* Residential Cleaning */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="relative h-64">
-                <img
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="relative h-48">
+                <Image
                   src="/images/services/residental cleaning.jpg"
-                  alt="Residential cleaning"
+                  alt="Residential Cleaning"
+                  width={400}
+                  height={200}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3">{translations.residentialCleaning}</h3>
-                <p className="text-gray-600 mb-4">{translations.residentialDesc}</p>
-                <a
-                  href="/ota-yhteytta"
-                  className="inline-block bg-[#27ae60] text-white px-6 py-2 rounded-full hover:bg-[#219a54] transition-colors"
+                <h3 className="text-xl font-semibold mb-3">
+                  {translations.residentialCleaning}
+                </h3>
+                <Link
+                  href="/palvelut"
+                  className="text-[#27ae60] font-medium hover:text-[#219a52] transition-colors"
                 >
-                  {translations.bookNow}
-                </a>
+                  {translations.readMore} →
+                </Link>
               </div>
             </div>
 
             {/* Window Cleaning */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="relative h-64">
-                <img
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="relative h-48">
+                <Image
                   src="/images/services/window cleaning.jpg"
-                  alt="Window cleaning"
+                  alt="Window Cleaning"
+                  width={400}
+                  height={200}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3">{translations.windowCleaning}</h3>
-                <p className="text-gray-600 mb-4">{translations.windowDesc}</p>
-                <a
-                  href="/ota-yhteytta"
-                  className="inline-block bg-[#27ae60] text-white px-6 py-2 rounded-full hover:bg-[#219a54] transition-colors"
+                <h3 className="text-xl font-semibold mb-3">
+                  {translations.windowCleaning}
+                </h3>
+                <Link
+                  href="/palvelut"
+                  className="text-[#27ae60] font-medium hover:text-[#219a52] transition-colors"
                 >
-                  {translations.bookNow}
-                </a>
+                  {translations.readMore} →
+                </Link>
               </div>
             </div>
 
             {/* Special Cleaning */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="relative h-64">
-                <img
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="relative h-48">
+                <Image
                   src="/images/services/special cleaning.jpg"
-                  alt="Special cleaning"
+                  alt="Special Cleaning"
+                  width={400}
+                  height={200}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3">{translations.specialCleaning}</h3>
-                <p className="text-gray-600 mb-4">{translations.specialDesc}</p>
-                <a
-                  href="/ota-yhteytta"
-                  className="inline-block bg-[#27ae60] text-white px-6 py-2 rounded-full hover:bg-[#219a54] transition-colors"
+                <h3 className="text-xl font-semibold mb-3">
+                  {translations.constructionCleaning}
+                </h3>
+                <Link
+                  href="/palvelut"
+                  className="text-[#27ae60] font-medium hover:text-[#219a52] transition-colors"
                 >
-                  {translations.bookNow}
-                </a>
+                  {translations.readMore} →
+                </Link>
               </div>
             </div>
           </div>
@@ -243,12 +260,12 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-4">{translations.readyToStart}</h2>
           <p className="text-xl mb-8">{translations.getInTouch}</p>
           <div className="max-w-4xl mx-auto">
-            <a
+            <Link
               href="/ota-yhteytta"
               className="block w-full bg-white text-[#27ae60] py-4 text-xl font-semibold hover:bg-gray-100 transition-all"
             >
               {translations.getQuote}
-            </a>
+            </Link>
           </div>
         </div>
       </section>

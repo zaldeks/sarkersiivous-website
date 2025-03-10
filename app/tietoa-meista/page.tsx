@@ -2,9 +2,25 @@
 
 import { useLanguage } from '../context/LanguageContext';
 import Link from 'next/link';
+import Image from 'next/image';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+
+interface ExperienceItem {
+  title: string;
+  description: string;
+}
+
+interface WhyNeedCleaningPoint {
+  title: string;
+  description: string;
+}
+
+interface FAQ {
+  q: string;
+  a: string;
+}
 
 export default function About() {
   const { translations } = useLanguage();
@@ -19,9 +35,19 @@ export default function About() {
     );
   }
 
-  const experienceList = translations.experienceList ? Object.entries(translations.experienceList) : [];
-  const whyNeedCleaningPoints = translations.whyNeedCleaningPoints ? Object.entries(translations.whyNeedCleaningPoints) : [];
-  const faqQuestions = translations.faqQuestions || [];
+  const experienceList: ExperienceItem[] = translations.experienceList ? 
+    Object.entries(translations.experienceList).map(([title, description]) => ({
+      title,
+      description: description as string
+    })) : [];
+
+  const whyNeedCleaningPoints: WhyNeedCleaningPoint[] = translations.whyNeedCleaningPoints ? 
+    Object.entries(translations.whyNeedCleaningPoints).map(([title, description]) => ({
+      title,
+      description: description as string
+    })) : [];
+
+  const faqQuestions: FAQ[] = translations.faqQuestions || [];
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -33,10 +59,13 @@ export default function About() {
       <section className="relative h-[50vh]">
         {/* Hero Background */}
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/images/about/about hero image.jpg"
             alt="Professional cleaning team"
+            width={1920}
+            height={1080}
             className="w-full h-full object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-black opacity-40"></div>
         </div>
@@ -68,18 +97,23 @@ export default function About() {
               <h2 className="text-3xl font-bold mb-6">{translations.whyNeedCleaning || 'Why Need Cleaning?'}</h2>
               <p className="text-gray-600 mb-8">{translations.whyNeedCleaningDesc || ''}</p>
               <div className="space-y-4">
-                {whyNeedCleaningPoints.map(([key, point]) => (
-                  <div key={key} className="flex items-start">
+                {whyNeedCleaningPoints.map((point) => (
+                  <div key={point.title} className="flex items-start">
                     <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-3" />
-                    <p className="text-gray-700">{point}</p>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-2">{point.title}</h3>
+                      <p className="text-gray-700">{point.description}</p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="relative h-80 rounded-lg overflow-hidden">
-              <img
+              <Image
                 src="/images/about/clean home environment.jpg"
                 alt="Clean home environment"
+                width={600}
+                height={400}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -100,9 +134,11 @@ export default function About() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-80 rounded-lg overflow-hidden">
-              <img
+              <Image
                 src="/images/about/professional cleaning experience.jpg"
                 alt="Professional cleaning experience"
+                width={600}
+                height={400}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -110,10 +146,13 @@ export default function About() {
               <h2 className="text-3xl font-bold mb-6">{translations.ourExperience || 'Our Experience'}</h2>
               <p className="text-gray-600 mb-8">{translations.ourExperienceDesc || ''}</p>
               <div className="space-y-4">
-                {experienceList.map(([key, experience]) => (
-                  <div key={key} className="flex items-start">
+                {experienceList.map((item) => (
+                  <div key={item.title} className="flex items-start">
                     <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-3" />
-                    <p className="text-gray-700">{experience}</p>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                      <p className="text-gray-700">{item.description}</p>
+                    </div>
                   </div>
                 ))}
               </div>

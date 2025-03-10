@@ -2,8 +2,7 @@
 
 import { useLanguage } from '../context/LanguageContext';
 import { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
-import { emailConfig } from '../config/emailjs';
+import Image from 'next/image';
 
 export default function Contact() {
   const { translations } = useLanguage();
@@ -135,26 +134,21 @@ export default function Contact() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[50vh]">
-        <div className="absolute inset-0">
-          <img
-            src="/images/services/ota-yhteytta.jpg"
-            alt="Contact us"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black opacity-40"></div>
+      <div className="relative h-[400px] w-full">
+        <Image
+          src="/images/services/ota-yhteytta.jpg"
+          alt="Contact Us"
+          width={1920}
+          height={400}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl text-white font-bold">
+            {translations.contactUs}
+          </h1>
         </div>
-        <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="text-center text-white px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              {translations.contactUs}
-            </h1>
-            <p className="text-xl md:text-2xl mb-8">
-              {translations.contactDesc}
-            </p>
-          </div>
-        </div>
-      </section>
+      </div>
 
       {/* Contact Form Section */}
       <section className="py-16">

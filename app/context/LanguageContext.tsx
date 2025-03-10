@@ -1,24 +1,25 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { translations as translationsData } from '../i18n/translations';
+import { translations as translationData } from '../i18n/translations';
 
 type Language = 'fi' | 'en';
+type TranslationType = typeof translationData.fi | typeof translationData.en;
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  translations: typeof translationsData.fi;
+  translations: TranslationType;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('fi');
-  const [translations, setTranslations] = useState(translationsData.fi);
+  const [translations, setTranslations] = useState<TranslationType>(translationData.fi);
 
   useEffect(() => {
-    setTranslations(language === 'fi' ? translationsData.fi : translationsData.en);
+    setTranslations(language === 'fi' ? translationData.fi : translationData.en);
   }, [language]);
 
   const value = {

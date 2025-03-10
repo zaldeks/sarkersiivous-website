@@ -1,37 +1,34 @@
-import { Resend } from 'resend';
+import { EmailJSResponseStatus } from '@emailjs/browser';
 import { NextResponse } from 'next/server';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import emailjs from '@emailjs/browser';
+import { emailConfig } from '../../config/emailjs';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { size, name, phone, email, service, message } = body;
+    const { name, email, phone, message, selectedServices, squareMeters } = body;
 
-    const { data, error } = await resend.emails.send({
-      from: 'Sarker Siivous Website <noreply@sarkersiivous.fi>',
-      to: 'myynti@sarkersiivous.fi',
-      subject: `New Cleaning Quote Request from ${name}`,
-      html: `
-        <h2>New Quote Request</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>House Size:</strong> ${size}m²</p>
-        <p><strong>Service:</strong> ${service}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
-    });
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      phone_number: phone,
+      message: message,
+      selected_services: selectedServices.join(', '),
+      square_meters: squareMeters,
+    };
 
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 });
-    }
+    await emailjs.send(
+      emailConfig.serviceId,
+      emailConfig.templateId,
+      templateParams,
+      emailConfig.publicKey
+    );
 
-    return NextResponse.json({ success: true, data });
-  } catch (error) {
+    return NextResponse.json({ message: 'Email sent successfully' });
+  } catch (err) {
+    console.error('Failed to send email:', err);
     return NextResponse.json(
-      { error: 'Error sending email' },
+      { message: 'Failed to send email' },
       { status: 500 }
     );
   }

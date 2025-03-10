@@ -17,7 +17,7 @@ const Footer = () => {
           {/* Navigation Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4">
-              {translations.navigation.home}
+              {translations.footer.companyInfo}
             </h3>
             <ul className="space-y-2">
               <li>
@@ -36,6 +36,21 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/kotitalousvahennys" className="text-gray-400 hover:text-white">
+                  {translations.footer.taxCredit}
+                </Link>
+              </li>
+              <li>
+                <Link href="/arvolisaton-siivous" className="text-gray-400 hover:text-white">
+                  {translations.footer.vatFree}
+                </Link>
+              </li>
+              <li>
+                <Link href="/blogi" className="text-gray-400 hover:text-white">
+                  {translations.footer.blog}
+                </Link>
+              </li>
+              <li>
                 <Link href="/ota-yhteytta" className="text-gray-400 hover:text-white">
                   {translations.footer.contact}
                 </Link>
@@ -48,26 +63,24 @@ const Footer = () => {
             <h3 className="text-white font-medium mb-4">{translations.contactUs}</h3>
             <ul className="space-y-2">
               <li className="text-gray-400">
-                Puh: <a href="tel:0443296873" className="hover:text-[#27ae60]">044 329 6873</a>
+                {translations.phone}: <a href="tel:0443296873" className="hover:text-[#27ae60]">{translations.footer.phone}</a>
               </li>
               <li className="text-gray-400">
                 Info: <a href="mailto:info@sarkersiivous.fi" className="hover:text-[#27ae60]">
-                  info@sarkersiivous.fi
+                  {translations.footer.email}
                 </a>
               </li>
               <li className="text-gray-400">
-                Myynti: <a href="mailto:myynti@sarkersiivous.fi" className="hover:text-[#27ae60]">
-                  myynti@sarkersiivous.fi
-                </a>
+                {translations.footer.address}
               </li>
             </ul>
           </div>
 
           {/* Service Areas */}
           <div>
-            <h3 className="text-white font-medium mb-4">{translations.address}</h3>
+            <h3 className="text-white font-medium mb-4">{translations.ourServices}</h3>
             <ul className="space-y-2">
-              {translations.serviceAreas.map((city: string, index: number) => (
+              {translations.footer.serviceAreas.map((city: string, index: number) => (
                 <li key={index} className="text-gray-400">{city}</li>
               ))}
             </ul>
@@ -77,8 +90,8 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
           <div className="text-sm text-gray-500 mt-4">
-            <p>&copy; {new Date().getFullYear()} Sarker Siivous. {translations.allRightsReserved}</p>
-            <p>Y-tunnus: 3360393-2</p>
+            <p>{translations.footer.copyright}</p>
+            <p>{translations.footer.businessId}</p>
           </div>
         </div>
       </div>

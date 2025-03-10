@@ -3,6 +3,7 @@
 import { useLanguage } from '../context/LanguageContext';
 import { blogs } from '../data/blogs';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function BlogPage() {
   const { language, translations } = useLanguage();
@@ -31,9 +32,11 @@ export default function BlogPage() {
               >
                 <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="relative h-48 bg-gray-200">
-                    <img
+                    <Image
                       src={blog.imageUrl}
                       alt={language === 'fi' ? blog.titleFi : blog.titleEn}
+                      width={400}
+                      height={200}
                       className="w-full h-full object-cover"
                     />
                   </div>

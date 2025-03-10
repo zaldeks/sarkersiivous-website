@@ -4,6 +4,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { blogs } from '../../data/blogs';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function BlogPost() {
   const { language } = useLanguage();
@@ -21,9 +22,11 @@ export default function BlogPost() {
     <div className="min-h-screen pt-16">
       {/* Hero Image */}
       <div className="relative h-[400px] w-full">
-        <img
+        <Image
           src={blog.imageUrl}
           alt={language === 'fi' ? blog.titleFi : blog.titleEn}
+          width={800}
+          height={400}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
