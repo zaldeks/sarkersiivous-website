@@ -29,124 +29,72 @@ const translations = {
       salesEmail: 'myynti@sarkersiivous.fi',
     },
 
-    // Meta
-    metaDescription: 'Sarker Siivous - Ammattitaitoista siivouspalvelua Helsingissä ja pääkaupunkiseudulla',
-
-    // Home Page
-    welcomeTitle: 'Tervetuloa Sarker Siivoukseen',
-    welcomeSubtitle: 'Ammattitaitoista siivouspalvelua Helsingissä ja pääkaupunkiseudulla',
-    aboutTitle: 'Miksi valita meidät?',
-    aboutDesc: 'Olemme luotettava ja ammattitaitoinen siivouspalvelu, joka tarjoaa laadukasta siivousta kilpailukykyiseen hintaan.',
-    benefitsList: [
-      'Ammattitaitoinen ja luotettava henkilökunta',
-      'Joustavat siivousajat',
-      'Ympäristöystävälliset siivousaineet',
-      'Kilpailukykyiset hinnat',
-      'Kotitalousvähennyskelpoinen',
-      'Tyytyväisyystakuu',
+    // VAT-free Page
+    vatFreeTitle: 'ALV 0 % Siivouspalvelut yli 80-vuotiaille',
+    vatFreeDesc: 'Tarjoamme ALV 0 %:n siivouspalvelut yli 80-vuotiaille asiakkaille!',
+    vatFreeIntro: 'Suomen verolainsäädännön mukaisesti kotitalouspalvelut, kuten siivous, ovat arvonlisäverottomia (ALV 0 %), kun ne tarjotaan yli 80-vuotiaille henkilöille. Tämän avulla voimme tarjota ammattimaista siivouspalvelua edullisemmin ikäihmisille, jotka haluavat pitää kotinsa siistinä ja viihtyisänä.',
+    whatIsVatFree: 'Mitä ALV 0 % tarkoittaa?',
+    vatFreeExplanation: 'Et maksa arvonlisäveroa (ALV) siivouspalveluista. Esimerkiksi, jos palvelun hinta on 100 €, maksat vain 74.5€ (ilman 25.5 % ALV:ia).',
+    vatFreeBenefitsDesc: 'ALV-vapaus tekee siivouspalveluista huomattavasti edullisempia, mikä helpottaa säännöllisen siivouksen mahdollistamista.',
+    whoIsItFor: 'Kenelle palvelu on tarkoitettu?',
+    whoIsItForDesc: 'Palvelu on tarkoitettu yli 80-vuotiaille henkilöille, jotka asuvat omassa kodissaan.',
+    whoIsItForAdditional: 'ALV-vapaus koskee sekä yksityishenkilöitä että heidän kotitalouksiaan.',
+    servicesTitle: 'Mitä palveluita tarjoamme ALV 0 %:lla?',
+    vatFreeServices: [
+      {
+        title: 'Perussiivous',
+        description: 'Pölyjen pyyhintä, imurointi, moppaus.',
+      },
+      {
+        title: 'Kylpyhuoneen siivous',
+        description: 'WC:n, pesualtaan ja suihkun puhdistus.',
+      },
+      {
+        title: 'Keittiön siivous',
+        description: 'Tiskialtaan, liedon ja jääkaapin ulkopinnan puhdistus.',
+      },
+      {
+        title: 'Lisäpalvelut',
+        description: 'Ikkunoiden puhdistus, mattojen pesu ja muut tarpeen mukaan.',
+      },
     ],
-    testimonialTitle: 'Asiakkaidemme kokemuksia',
-    testimonial1Name: 'Maija Virtanen',
-    testimonial1Title: 'Tyytyväinen asiakas',
-    testimonial1Text: 'Erittäin hyvä ja luotettava siivouspalvelu. Suosittelen lämpimästi!',
-    testimonial2Name: 'Mikko Korhonen',
-    testimonial2Title: 'Yritysasiakas',
-    testimonial2Text: 'Olen käyttänyt Sarker Siivouksen palveluita jo vuoden ajan ja olen ollut erittäin tyytyväinen.',
-    testimonial3Name: 'Anna Mäkinen',
-    testimonial3Title: 'Vakioasiakas',
-    testimonial3Text: 'Erinomaista palvelua ja joustavuutta aikataulujen suhteen.',
-    readyToStart: 'Valmis aloittamaan?',
-    getInTouch: 'Ota yhteyttä ja pyydä tarjous!',
-    
-    // Services
-    ourServices: 'Palvelumme',
-    residentialCleaning: 'Kotisiivous',
-    officeCleaning: 'Toimistosiivous',
-    constructionCleaning: 'Rakennussiivous',
-    windowCleaning: 'Ikkunanpesu',
-    
-    // Contact Form
-    contactUs: 'Ota yhteyttä',
-    name: 'Nimi',
-    email: 'Sähköposti',
-    phone: 'Puhelin',
-    message: 'Viesti',
-    send: 'Lähetä',
-    
-    // About Us Page
-    aboutUs: 'Tietoa meistä',
-    aboutHeroDesc: 'Tutustu meihin ja siihen, miksi olemme luotettava valinta siivouksen ammattilaiseksi.',
-    whyNeedCleaning: 'Miksi tarvitset siivouspalvelua?',
-    whyNeedCleaningDesc: 'Ammattimainen siivous säästää aikaasi ja takaa puhtaan ja terveellisen ympäristön.',
-    whyNeedCleaningPoints: {
-      time: 'Säästä aikaa ja keskity olennaiseen',
-      quality: 'Ammattimainen ja perusteellinen siivous',
-      health: 'Terveellinen ja puhdas ympäristö',
-      stress: 'Vähemmän stressiä, enemmän vapaa-aikaa',
-    },
-    whatWeOffer: 'Mitä tarjoamme',
-    whatWeOfferDesc: 'Tarjoamme kattavan valikoiman siivouspalveluita koteihin ja yrityksille.',
-    ourExperience: 'Kokemuksemme',
-    ourExperienceDesc: 'Meillä on vuosien kokemus laadukkaasta siivouksesta.',
-    experienceList: {
-      professional: 'Ammattitaitoinen henkilökunta',
-      quality: 'Korkealaatuiset siivousvälineet ja -aineet',
-      reliable: 'Luotettava ja täsmällinen palvelu',
-      flexible: 'Joustavat aikataulut',
-    },
-    ourPromise: 'Lupauksemme',
-    ourPromiseDesc: 'Lupaamme tarjota parasta mahdollista siivouspalvelua.',
-    serviceGuarantee: 'Tyytyväisyystakuu',
-    satisfactionGuaranteeDesc: 'Jos et ole tyytyväinen siivouksen laatuun, korjaamme tilanteen veloituksetta.',
+    howToOrderTitle: 'Miten tilata ALV 0 % siivouspalvelu?',
+    howToOrder: [
+      'Ota yhteyttä meille ja kerro tarpeistasi.',
+      'Varmistamme yhdessä, että palvelu täyttää ALV-vapauden ehdot.',
+      'Sovimme siivouksen ajankohdan ja keston.',
+    ],
+    whyChooseUsTitle: 'Miksi valita meidät?',
+    whyChooseUs: [
+      'Olemme ALV-rekisteröity siivousyritys, joka noudattaa kaikkia verolainsäädännön vaatimuksia.',
+      'Tarjoamme joustavia ja luotettavia siivousratkaisuja, jotka helpottavat arkea.',
+      'Asiakkaidemme hyvinvointi on meille tärkeää, ja teemme kaikkemme, jotta koti pysyisi siistinä ja turvallisena.',
+    ],
+    ctaTitle: 'Ota yhteyttä ja kysy lisää!',
+    viewServices: 'Katso palvelumme',
     getQuote: 'Pyydä tarjous',
-    readyToStartDesc: 'Ota yhteyttä ja kerro tarpeistasi. Teemme sinulle räätälöidyn tarjouksen.',
-    faq: 'Usein kysytyt kysymykset',
-    faqQuestions: [
-      {
-        q: 'Kuinka usein siivouspalvelua suositellaan?',
-        a: 'Siivouspalvelun tarve riippuu tilojen käytöstä ja koosta. Kodeille suosittelemme viikoittaista tai kahden viikon välein tapahtuvaa siivousta, yrityksille päivittäistä tai viikoittaista siivousta.',
-      },
-      {
-        q: 'Mitä siivouspalveluun kuuluu?',
-        a: 'Perussiivouspalveluumme kuuluu lattioiden imurointi ja moppaus, pölyjen pyyhintä, kylpyhuoneen ja WC:n siivous, keittiön siivous sekä roskien vienti. Voimme räätälöidä palvelun tarpeidesi mukaan.',
-      },
-      {
-        q: 'Onko siivouspalvelu kotitalousvähennyskelpoinen?',
-        a: 'Kyllä, kotisiivouksesta voi saada kotitalousvähennystä. Vähennys on 40% työn osuudesta.',
-      },
-    ],
-    
-    // Blog
-    latestPosts: 'Uusimmat artikkelit',
-    readMore: 'Lue lisää',
-    
-    // Footer
-    followUs: 'Seuraa meitä',
-    privacyPolicy: 'Tietosuoja',
-    termsOfService: 'Käyttöehdot',
 
     // Household Deduction Page
     householdDeductionTitle: 'Kotitalousvähennys',
     householdDeductionDesc: 'Hyödynnä kotitalousvähennys siivouspalveluista - säästä jopa 40% kustannuksista',
-    whatIsHouseholdDeduction: 'Mikä on kotitalousvähennys?',
-    whatIsHouseholdDeductionDesc: 'Kotitalousvähennys on verovähennys, jonka saat teettäessäsi kotitaloustyötä, kuten siivousta. Vähennys on 35% työn osuudesta ja se vähennetään suoraan maksettavasta verostasi.',
-    exampleCalculationTitle: 'Esimerkki säästöistäsi',
-    originalPrice: 'Alkuperäinen hinta',
-    householdDeduction: 'Kotitalousvähennys',
-    finalPrice: 'Lopullinen hinta',
-    howToGetDeductionTitle: 'Näin saat vähennyksen',
-    step1Desc: 'Tilaa siivouspalvelumme',
-    step2Desc: 'Maksa lasku',
-    step3Desc: 'Saat meiltä todistuksen verovähennystä varten',
-    step4Desc: 'Ilmoita vähennys veroilmoituksessasi',
-    maximumDeductionTitle: 'Vuosittainen enimmäismäärä',
-    maximumDeductionDesc: 'Kotitalousvähennyksen enimmäismäärä on 1600€ per työssäkäyvä henkilö vuodessa.',
-    maximumDeductionExample: 'Esimerkki: Jos taloudessasi on kaksi työssäkäyvää henkilöä, voitte saada yhteensä 3200€ vähennystä vuodessa!',
-    startSavingToday: 'Aloita säästäminen jo tänään!',
-    requestOffer: 'Pyydä tarjous',
-    seeOurServices: 'Katso palvelumme',
+    whatIsTaxCredit: 'Mikä on kotitalousvähennys?',
+    taxCreditExplanation: 'Kotitalousvähennys on verotuksessa tehtävä vähennys, jonka voit saada kotona tehtävästä työstä, kuten siivouksesta. Vähennys on 40% työkorvauksesta, ja sen enimmäismäärä on 2 250 € vuodessa.',
+    howMuchCanYouSave: 'Paljonko voit säästää?',
+    savingsExplanation: 'Jos siivouspalvelun hinta on esimerkiksi 100 €, voit saada siitä 40 € takaisin verovähennyksenä.',
+    taxCreditServices: [
+      'Säännöllinen ylläpitosiivous',
+      'Ikkunoiden pesu',
+      'Suursiivous',
+      'Muuttosiivous',
+    ],
+    howToApply: 'Miten hakea kotitalousvähennystä?',
+    applicationProcess: 'Kotitalousvähennyksen hakeminen on helppoa. Saat meiltä kaikki tarvittavat tositteet ja voit ilmoittaa vähennyksen suoraan veroilmoituksessasi.',
+    needHelp: 'Tarvitsetko apua?',
+    helpText: 'Autamme mielellämme kotitalousvähennyksen hakemisessa. Ota yhteyttä niin kerromme lisää!',
+
+    // Meta
+    metaDescription: 'Sarker Siivous - Ammattitaitoista siivouspalvelua Helsingissä ja pääkaupunkiseudulla',
   },
-  
   en: {
     navigation: {
       home: 'Home',
@@ -177,123 +125,73 @@ const translations = {
       salesEmail: 'myynti@sarkersiivous.fi',
     },
 
-    // Meta
-    metaDescription: 'Professional cleaning services in the Helsinki metropolitan area and surrounding regions',
-
-    // Home Page
-    welcomeTitle: 'Welcome to Sarker Cleaning',
-    welcomeSubtitle: 'Professional cleaning services in Helsinki and the metropolitan area',
-    aboutTitle: 'Why Choose Us?',
-    aboutDesc: 'We are a reliable and professional cleaning service offering high-quality cleaning at competitive prices.',
-    benefitsList: [
-      'Professional and reliable staff',
-      'Flexible cleaning schedules',
-      'Environmentally friendly cleaning products',
-      'Competitive prices',
-      'Household tax credit eligible',
-      'Satisfaction guarantee',
-    ],
-    testimonialTitle: 'Customer Testimonials',
-    testimonial1Name: 'Maija Virtanen',
-    testimonial1Title: 'Satisfied Customer',
-    testimonial1Text: 'Excellent and reliable cleaning service. Highly recommended!',
-    testimonial2Name: 'Mikko Korhonen',
-    testimonial2Title: 'Business Customer',
-    testimonial2Text: 'I have been using Sarker Cleaning services for a year now and I have been very satisfied.',
-    testimonial3Name: 'Anna Mäkinen',
-    testimonial3Title: 'Regular Customer',
-    testimonial3Text: 'Excellent service and flexibility with schedules.',
-    readyToStart: 'Ready to Start?',
-    getInTouch: 'Get in touch and request a quote!',
-    
-    // Services
-    ourServices: 'Our Services',
-    residentialCleaning: 'Home Cleaning',
-    officeCleaning: 'Office Cleaning',
-    constructionCleaning: 'Construction Cleaning',
-    windowCleaning: 'Window Cleaning',
-    
-    // Contact Form
-    contactUs: 'Contact Us',
-    name: 'Name',
-    email: 'Email',
-    phone: 'Phone',
-    message: 'Message',
-    send: 'Send',
-    
-    // About Us Page
-    aboutUs: 'About Us',
-    aboutHeroDesc: 'Learn about us and why we are your trusted choice for professional cleaning.',
-    whyNeedCleaning: 'Why Do You Need Cleaning Service?',
-    whyNeedCleaningDesc: 'Professional cleaning saves your time and ensures a clean and healthy environment.',
-    whyNeedCleaningPoints: {
-      time: 'Save time and focus on what matters',
-      quality: 'Professional and thorough cleaning',
-      health: 'Healthy and clean environment',
-      stress: 'Less stress, more free time',
-    },
-    whatWeOffer: 'What We Offer',
-    whatWeOfferDesc: 'We offer a comprehensive range of cleaning services for homes and businesses.',
-    ourExperience: 'Our Experience',
-    ourExperienceDesc: 'We have years of experience in quality cleaning.',
-    experienceList: {
-      professional: 'Professional staff',
-      quality: 'High-quality cleaning equipment and supplies',
-      reliable: 'Reliable and punctual service',
-      flexible: 'Flexible schedules',
-    },
-    ourPromise: 'Our Promise',
-    ourPromiseDesc: 'We promise to provide the best possible cleaning service.',
-    serviceGuarantee: 'Service Guarantee',
-    satisfactionGuaranteeDesc: 'If you are not satisfied with the quality of cleaning, we will fix the situation free of charge.',
-    getQuote: 'Get a Quote',
-    readyToStartDesc: 'Contact us and tell us about your needs. We will make you a customized offer.',
-    faq: 'Frequently Asked Questions',
-    faqQuestions: [
+    // VAT-free Page
+    vatFreeTitle: 'VAT 0% Cleaning Services for Over 80-year-olds',
+    vatFreeDesc: 'We offer VAT-free cleaning services for customers over 80 years old!',
+    vatFreeIntro: 'According to Finnish tax legislation, household services such as cleaning are VAT-free (0%) when provided to persons over 80 years old. This allows us to offer professional cleaning services at a more affordable price to elderly people who want to keep their homes clean and comfortable.',
+    whatIsVatFree: 'What does VAT 0% mean?',
+    vatFreeExplanation: 'You do not pay value-added tax (VAT) on cleaning services. For example, if the service price is €100, you only pay €74.5 (without 25.5% VAT).',
+    vatFreeBenefitsDesc: 'VAT exemption makes cleaning services significantly more affordable, making it easier to maintain regular cleaning.',
+    whoIsItFor: 'Who is this service for?',
+    whoIsItForDesc: 'The service is intended for people over 80 years old who live in their own homes.',
+    whoIsItForAdditional: 'VAT exemption applies to both individuals and their households.',
+    servicesTitle: 'What services do we offer VAT-free?',
+    vatFreeServices: [
       {
-        q: 'How often is cleaning service recommended?',
-        a: 'The need for cleaning service depends on the use and size of the premises. For homes, we recommend weekly or bi-weekly cleaning, for businesses daily or weekly cleaning.',
+        title: 'Basic Cleaning',
+        description: 'Dusting, vacuuming, mopping.',
       },
       {
-        q: 'What is included in the cleaning service?',
-        a: 'Our basic cleaning service includes vacuuming and mopping floors, dusting, bathroom and toilet cleaning, kitchen cleaning, and taking out trash. We can customize the service according to your needs.',
+        title: 'Bathroom Cleaning',
+        description: 'Cleaning of toilet, sink, and shower.',
       },
       {
-        q: 'Is cleaning service eligible for household tax credit?',
-        a: 'Yes, you can get household tax credit for home cleaning. The deduction is 40% of the labor cost.',
+        title: 'Kitchen Cleaning',
+        description: 'Cleaning of sink, stove, and refrigerator exterior.',
+      },
+      {
+        title: 'Additional Services',
+        description: 'Window cleaning, carpet cleaning, and other services as needed.',
       },
     ],
-    
-    // Blog
-    latestPosts: 'Latest Posts',
-    readMore: 'Read More',
-    
-    // Footer
-    followUs: 'Follow Us',
-    privacyPolicy: 'Privacy Policy',
-    termsOfService: 'Terms of Service',
+    howToOrderTitle: 'How to order VAT-free cleaning service?',
+    howToOrder: [
+      'Contact us and tell us about your needs.',
+      'We will verify together that the service meets VAT exemption requirements.',
+      'We agree on the cleaning schedule and duration.',
+    ],
+    whyChooseUsTitle: 'Why choose us?',
+    whyChooseUs: [
+      'We are a VAT-registered cleaning company that complies with all tax legislation requirements.',
+      'We offer flexible and reliable cleaning solutions that make everyday life easier.',
+      'The well-being of our customers is important to us, and we do everything to keep their homes clean and safe.',
+    ],
+    ctaTitle: 'Contact us and ask for more information!',
+    viewServices: 'View our services',
+    getQuote: 'Get a quote',
 
     // Household Deduction Page
     householdDeductionTitle: 'Household Tax Credit',
     householdDeductionDesc: 'Save up to 40% on cleaning services with household tax credit',
-    whatIsHouseholdDeduction: 'What is household tax credit?',
-    whatIsHouseholdDeductionDesc: 'Household tax credit is a tax deduction that you can get when you hire a cleaning service. The deduction is 40% of the work compensation and it is deducted directly from the taxes you pay.',
-    exampleCalculationTitle: 'Example of household tax credit',
-    originalPrice: 'Original Price',
-    householdDeduction: 'Household Tax Credit',
-    finalPrice: 'Final Price',
-    howToGetDeductionTitle: 'How to get the tax credit?',
-    step1Desc: 'Order our cleaning service',
-    step2Desc: 'Pay the invoice',
-    step3Desc: 'Get a certificate from us for tax credit',
-    step4Desc: 'Report the tax credit in your tax return',
-    maximumDeductionTitle: 'Annual maximum amount',
-    maximumDeductionDesc: 'The maximum amount of household tax credit is 2,250€ per year.',
-    maximumDeductionExample: 'Example: If there are two working individuals in your household, you can get a total of 4,500€ in tax credit per year!',
-    startSavingToday: 'Start saving today!',
-    requestOffer: 'Request an offer',
-    seeOurServices: 'See our services',
+    whatIsTaxCredit: 'What is household tax credit?',
+    taxCreditExplanation: 'Household tax credit is a tax deduction you can get for work done in your home, such as cleaning. The deduction is 40% of the labor cost, with a maximum of €2,250 per year.',
+    howMuchCanYouSave: 'How much can you save?',
+    savingsExplanation: 'For example, if the cleaning service costs €100, you can get €40 back as a tax deduction.',
+    taxCreditServices: [
+      'Regular maintenance cleaning',
+      'Window cleaning',
+      'Deep cleaning',
+      'Moving cleaning',
+    ],
+    howToApply: 'How to apply for tax credit?',
+    applicationProcess: 'Applying for household tax credit is easy. We provide all necessary receipts, and you can report the deduction directly in your tax return.',
+    needHelp: 'Need help?',
+    helpText: 'We are happy to help you with applying for household tax credit. Contact us to learn more!',
+
+    // Meta
+    metaDescription: 'Sarker Cleaning - Professional cleaning services in Helsinki and metropolitan area',
   }
 } as const;
 
+export type TranslationType = typeof translations.fi;
 export { translations };

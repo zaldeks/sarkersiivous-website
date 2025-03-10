@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '../context/LanguageContext';
+import Image from 'next/image';
 
 export default function TaxCredit() {
   const { translations } = useLanguage();
@@ -14,10 +15,12 @@ export default function TaxCredit() {
       {/* Hero Section */}
       <section className="relative h-[50vh]">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/images/tax-credit/hero.jpg"
             alt="Household tax credit"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-black opacity-40"></div>
         </div>

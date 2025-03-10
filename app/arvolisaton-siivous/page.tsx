@@ -1,178 +1,123 @@
 'use client';
 
 import { useLanguage } from '../context/LanguageContext';
-import { CheckCircleIcon, CalculatorIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
+interface Service {
+  title: string;
+  description: string;
+}
+
 export default function ArvolisatonSiivousPage() {
+  const { translations } = useLanguage();
+
+  if (!translations) {
+    return (
+      <div className="min-h-screen pt-16 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#27ae60]"></div>
+      </div>
+    );
+  }
+
   return (
-    <main className="flex-1">
+    <main className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="bg-[#27ae60] text-white py-24">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              ALV 0 % Siivouspalvelut yli 80-vuotiaille
-            </h1>
-            <p className="text-xl opacity-90">
-              Tarjoamme ALV 0 %:n siivouspalvelut yli 80-vuotiaille asiakkaille!
-            </p>
-          </div>
+      <section className="bg-gray-50 py-12 md:py-24">
+        <div className="max-w-4xl mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            {translations.vatFreeTitle}
+          </h1>
+          <p className="text-gray-600 text-lg mb-8">
+            {translations.vatFreeDesc}
+          </p>
+          <Link
+            href="/ota-yhteytta"
+            className="bg-[#27ae60] text-white px-8 py-3 rounded-lg hover:bg-[#219a54] transition-colors inline-block"
+          >
+            {translations.getQuote}
+          </Link>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          {/* Introduction */}
-          <div className="max-w-3xl mx-auto text-lg text-gray-600 mb-16">
-            <p>
-              Suomen verolainsäädännön mukaisesti kotitalouspalvelut, kuten siivous, ovat arvonlisäverottomia (ALV 0 %), 
-              kun ne tarjotaan yli 80-vuotiaille henkilöille. Tämän avulla voimme tarjota ammattimaista siivouspalvelua 
-              edullisemmin ikäihmisille, jotka haluavat pitää kotinsa siistinä ja viihtyisänä.
-            </p>
-          </div>
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="prose prose-lg max-w-none">
+            <p>{translations.vatFreeIntro}</p>
 
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            {/* What is ALV 0% */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <div className="flex items-center mb-8">
-                <div className="bg-[#27ae60] bg-opacity-10 rounded-full p-4 mr-4">
-                  <CalculatorIcon className="w-8 h-8 text-[#27ae60]" />
-                </div>
-                <h2 className="text-2xl font-bold">Mitä ALV 0 % tarkoittaa?</h2>
-              </div>
-              
-              <div className="space-y-6">
-                <p className="text-lg text-gray-600">
-                  Et maksa arvonlisäveroa (ALV) siivouspalveluista. Esimerkiksi, jos palvelun hinta on 100 €, maksat vain 74.5€ (ilman 25.5 % ALV:ia).
-                </p>
-                <p className="text-lg text-gray-600">
-                  ALV-vapaus tekee siivouspalveluista huomattavasti edullisempia, mikä helpottaa säännöllisen siivouksen mahdollistamista.
-                </p>
-              </div>
+            {/* What is VAT-free */}
+            <div className="bg-white rounded-lg shadow-sm p-8 my-8">
+              <h2 className="text-2xl font-bold mb-4">{translations.whatIsVatFree}</h2>
+              <p>{translations.vatFreeExplanation}</p>
+              <p className="mt-4">{translations.vatFreeBenefitsDesc}</p>
             </div>
 
             {/* Who is it for */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <div className="flex items-center mb-8">
-                <div className="bg-[#27ae60] bg-opacity-10 rounded-full p-4 mr-4">
-                  <UserGroupIcon className="w-8 h-8 text-[#27ae60]" />
-                </div>
-                <h2 className="text-2xl font-bold">Kenelle palvelu on tarkoitettu?</h2>
-              </div>
-
-              <div className="space-y-6">
-                <p className="text-lg text-gray-600">
-                  Palvelu on tarkoitettu yli 80-vuotiaille henkilöille, jotka asuvat omassa kodissaan.
-                </p>
-                <p className="text-lg text-gray-600">
-                  ALV-vapaus koskee sekä yksityishenkilöitä että heidän kotitalouksiaan.
-                </p>
-              </div>
+            <div className="bg-gray-50 rounded-lg p-8 my-8">
+              <h2 className="text-2xl font-bold mb-4">{translations.whoIsItFor}</h2>
+              <p>{translations.whoIsItForDesc}</p>
+              <p className="mt-4">{translations.whoIsItForAdditional}</p>
             </div>
-          </div>
 
-          {/* Services */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-16">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 text-center">Mitä palveluita tarjoamme ALV 0 %:lla?</h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-4 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Perussiivous</h3>
-                    <p className="text-gray-600">Pölyjen pyyhintä, imurointi, moppaus.</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-4 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Kylpyhuoneen siivous</h3>
-                    <p className="text-gray-600">WC:n, pesualtaan ja suihkun puhdistus.</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-4 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Keittiön siivous</h3>
-                    <p className="text-gray-600">Tiskialtaan, liedon ja jääkaapin ulkopinnan puhdistus.</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-4 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Lisäpalvelut</h3>
-                    <p className="text-gray-600">Ikkunoiden puhdistus, mattojen pesu ja muut tarpeen mukaan.</p>
-                  </div>
+            {/* Services */}
+            <section className="py-12 bg-white">
+              <div className="max-w-3xl mx-auto">
+                <h2 className="text-3xl font-bold mb-8 text-center">{translations.servicesTitle}</h2>
+                <div className="space-y-6">
+                  {translations.vatFreeServices.map((service: Service, index: number) => (
+                    <div key={index} className="flex items-start">
+                      <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-4 flex-shrink-0" />
+                      <div>
+                        <h3 className="text-xl font-semibold">{service.title}</h3>
+                        <p className="text-gray-600">{service.description}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
+            </section>
 
-          {/* How to Order */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-16">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 text-center">Miten tilata ALV 0 % siivouspalvelu?</h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="bg-[#27ae60] bg-opacity-10 rounded-full p-2 mr-4 mt-1">
-                    <span className="text-[#27ae60] font-semibold">1</span>
-                  </div>
-                  <p className="text-lg">Ota yhteyttä meille ja kerro tarpeistasi.</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-[#27ae60] bg-opacity-10 rounded-full p-2 mr-4 mt-1">
-                    <span className="text-[#27ae60] font-semibold">2</span>
-                  </div>
-                  <p className="text-lg">Varmistamme yhdessä, että palvelu täyttää ALV-vapauden ehdot.</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-[#27ae60] bg-opacity-10 rounded-full p-2 mr-4 mt-1">
-                    <span className="text-[#27ae60] font-semibold">3</span>
-                  </div>
-                  <p className="text-lg">Sovimme siivouksen ajankohdan ja keston.</p>
+            {/* How to Order */}
+            <section className="py-12 bg-gray-50">
+              <div className="max-w-3xl mx-auto">
+                <h2 className="text-3xl font-bold mb-8 text-center">{translations.howToOrderTitle}</h2>
+                <div className="space-y-6">
+                  {translations.howToOrder.map((step: string, index: number) => (
+                    <div key={index} className="flex items-start">
+                      <div className="bg-[#27ae60] bg-opacity-10 rounded-full p-2 mr-4 mt-1">
+                        <span className="text-[#27ae60] font-semibold">{index + 1}</span>
+                      </div>
+                      <p className="text-lg">{step}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
+            </section>
 
-          {/* Why Choose Us */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-16">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 text-center">Miksi valita meidät?</h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-4 flex-shrink-0" />
-                  <p className="text-lg">Olemme ALV-rekisteröity siivousyritys, joka noudattaa kaikkia verolainsäädännön vaatimuksia.</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-4 flex-shrink-0" />
-                  <p className="text-lg">Tarjoamme joustavia ja luotettavia siivousratkaisuja, jotka helpottavat arkea.</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-4 flex-shrink-0" />
-                  <p className="text-lg">Asiakkaidemme hyvinvointi on meille tärkeää, ja teemme kaikkemme, jotta koti pysyisi siistinä ja turvallisena.</p>
+            {/* Why Choose Us */}
+            <section className="py-12 bg-white">
+              <div className="max-w-3xl mx-auto">
+                <h2 className="text-3xl font-bold mb-8 text-center">{translations.whyChooseUsTitle}</h2>
+                <div className="space-y-6">
+                  {translations.whyChooseUs.map((reason: string, index: number) => (
+                    <div key={index} className="flex items-start">
+                      <CheckCircleIcon className="w-6 h-6 text-[#27ae60] mt-1 mr-4 flex-shrink-0" />
+                      <p className="text-lg">{reason}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
+            </section>
 
-          {/* CTA */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold mb-8">Ota yhteyttä ja kysy lisää!</h2>
-            <div className="flex justify-center gap-4">
-              <Link 
-                href="/ota-yhteytta" 
-                className="bg-[#27ae60] text-white px-8 py-4 rounded-lg hover:bg-[#219a54] transition-colors text-lg font-medium"
+            {/* CTA Section */}
+            <div className="bg-gray-50 p-8 rounded-lg mt-12 text-center">
+              <h2 className="text-2xl font-bold mb-4">{translations.ctaTitle}</h2>
+              <Link
+                href="/ota-yhteytta"
+                className="bg-[#27ae60] text-white px-8 py-3 rounded-lg hover:bg-[#219a54] transition-colors inline-block"
               >
-                Pyydä tarjous
-              </Link>
-              <Link 
-                href="/palvelut" 
-                className="border-2 border-[#27ae60] text-[#27ae60] px-8 py-4 rounded-lg hover:bg-[#27ae60] hover:text-white transition-colors text-lg font-medium"
-              >
-                Katso palvelumme
+                {translations.getQuote}
               </Link>
             </div>
           </div>
